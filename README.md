@@ -4,9 +4,9 @@
 
 ## 解释一下jsonp，原理，同源策略，如何实现跨域post
 
-### (jsonp)[/hk029/front-end/about_js/jsonp.md]
+### [jsonp](/hk029/front-end/about_js/jsonp.md)
 
-### (同源策略 和 部分其他跨域方法) [/hk029/front-end/about_js/sameorigin.md]
+### [同源策略 和 部分其他跨域方法](/hk029/front-end/about_js/sameorigin.md)
 
 
 2、通过修改document.domain来跨子域
