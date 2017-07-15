@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  function receiveMessage(event) {
+    // Do we trust the sender of this message?
+
+    // event.source is window.opener
+    // event.data is "hello there!"
+
+    // Assuming you've verified the origin of the received message (which
+    // you must do in any case), a convenient idiom for replying to a
+    // message is to call postMessage on event.source and provide
+    // event.origin as the targetOrigin.
+    console.log(event);
+    event.source.postMessage("hi there yourself!  the secret response " +
+      "is: rheeeeet!",
+      event.origin);
+  }
+
+  window.addEventListener("message", receiveMessage, false);
+</script>
+
+</html>
