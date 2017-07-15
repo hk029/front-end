@@ -2,22 +2,78 @@
 前端基本功以及面试必备知识
 # JS相关
 
-## 解释一下jsonp，原理，同源策略，如何实现跨域post
+- [jsonp](about_js/jsonp.md)
+- [同源策略 和 部分其他跨域方法](about_js/sameorigin.md)
+- [如何clone一个对象(深拷贝)](about_js/clone.md)
+- [闭包](/about_js/closure.md)
+- [如何实现继承](about_js/extend.md)
+- [this](about_js/this.md)
+- [数组相关](/about_js/array.md)
+- [链式调用](/about_js/chain.md)
+- [上下文](/about_js/context.md)
+- [事件](/about_js/event.md)
+- [jsonp](/about_js/jsonp.md)
+- [polyfill](/about_js/polyfill.md)
+- [原型(链)](/about_js/prototype.md)
+- [同源问题与跨域](/about_js/sameorigin.md)
+- [cache](/caching/cache.md)
+- [cookie](/caching/cookie.md)
+- [session](/caching/session.md)
 
-1. [jsonp](about_js/jsonp.md)
+# css 相关
+- [盒模型](/about_css/box.md)
+- [层叠](/about_css/cascade.md)
+- [居中](/about_css/center.md)
+- [css3相关](/about_css/css3.md)
+- [格式化上下文](/about_css/fc.md)
+- [flex布局](/about_css/flex.md)
+- [流模型](/about_css/flow.md)
+- [hack](/about_css/hack.md)
+- [基本布局](/about_css/layout.md)
+- [less](/about_css/less.md)
+- [sass](/about_css/sass.md)
+- [css选择器](/about_css/selector.md)
 
-2. [同源策略 和 部分其他跨域方法](about_js/sameorigin.md)
+# html 相关
+- [doctyp](/about_html/doctype.md)
+- [head](/about_html/head.md)
+- [语义化标签](/about_html/semantic.md)
+- [常用标签](/about_html/tags.md)
+- [viewpor](/about_html/viewport.md)
 
-3. [如何clone一个对象(深拷贝)]
-4. [如何实现继承]()
-5. [this]()
-6. [闭包]()
+
+# ES6
+- [箭头函数](/es6/arrow.md)
+- [class](/es6/class.md)
+
+#框架，工具
+## vue
+- [vue相关](/framework/vue/vue.md)
+- [vuex](/framework/vue/vuex.md)
+- [vue-router](/framework/vue/vue_router.md)
+
+## webpack
+- [webpack基本知识](/framework/webpack.md)
 
 
+# nodejs
+- [nodejs相关](/framework/nodejs/nodejs.md)
+- [fs](/framework/nodejs/fs.md)
+- [http](/framework/nodejs/http.md)
 
+## 前端综合
+1. [ajax](/overall/ajax.md)
+1. [cookie](/overall/cookie.md)
+1. [fiddler使用](/overall/fiddler.md)
+1. [flex布局](/overall/flex.md)
+1. [generator](/overall/generator.md)
+1. [iframe](/overall/iframe.md)
+1. [通信](/overall/message.md)
+1. [promise](/overall/promise.md)
+1. [正则表达式](/overall/regex.md)
+1. [存储相关](/overall/storage.md)
 
 ### 事件委托
-
 
 
 1. 闭包 原型(prototype)

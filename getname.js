@@ -23,7 +23,7 @@ var str = '';
 readDir(process.cwd(), function (file) {
   files.push(file);
   var tmp = file.replace(process.cwd(), '');
-  str += `[${tmp}](${tmp})\n`;
+  str += `[](${tmp})\n`;
   console.log(file.replace(process.cwd(), ''));
 }, {
   filters: [/\.git/g]
