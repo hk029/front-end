@@ -61,7 +61,9 @@
 
 ### 常见编程考验
 - [基本布局](/about_css/layout.md)
-- [实现水平垂直居中](/about_css/center.md)
+- [实现水平居中](/about_css/center.md)
+- [实现垂直居中](/about_css/vcenter.md)
+- [实现水平垂直居中](/about_css/hvcenter.md)
 
 ## html 相关
 - [doctyp](/about_html/doctype.md)
