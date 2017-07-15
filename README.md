@@ -37,6 +37,7 @@
 - [如何clone一个对象(深拷贝)](about_js/clone.md)
 - [如何实现数组去重](about_js/duplication.md)
 - [遍历DOM节点](about_js/traverse.md)
+- [实现一个lazyman](about_js/lazyman.md)
 
 ## css 相关
 - [盒模型](/about_css/box.md)
@@ -61,12 +62,16 @@
 - [常用标签](/about_html/tags.md)
 - [viewpor](/about_html/viewport.md)
 
+## http,浏览器相关
+- 常见相应代码
+- http头
+- 浏览器模式(解释清楚算加分项)
 
 ## ES6
 - [箭头函数](/es6/arrow.md)
 - [class](/es6/class.md)
 
-##框架，工具
+## 框架，工具
 ### vue
 - [vue相关](/framework/vue/vue.md)
 - [vuex](/framework/vue/vuex.md)
@@ -86,10 +91,6 @@
 - [fs](/framework/nodejs/fs.md)
 - [http](/framework/nodejs/http.md)
 
-## http,浏览器相关
-1. 常见相应代码
-2. http头
-3. 浏览器模式(解释清楚算加分项)
 
 ## 算法题：
 
