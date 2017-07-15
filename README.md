@@ -4,19 +4,11 @@
 
 ## 解释一下jsonp，原理，同源策略，如何实现跨域post
 
-### [jsonp](/hk029/front-end/about_js/jsonp.md)
+1. [jsonp](about_js/jsonp.md)
 
-### [同源策略 和 部分其他跨域方法](/hk029/front-end/about_js/sameorigin.md)
+2. [同源策略 和 部分其他跨域方法](about_js/sameorigin.md)
 
-
-2、通过修改document.domain来跨子域
-
-3、使用window.name来进行跨域
-
-4、使用HTML5中新引进的window.postMessage方法来跨域传送数据（ie 67 不支持）
-
-
-### 如何clone一个对象 深拷贝 浅拷贝 如何实现继承
+3. 如何clone一个对象 拷贝 浅拷贝 如何实现继承
 
 
 

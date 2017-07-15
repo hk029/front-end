@@ -9,9 +9,15 @@
 </head>
 
 <body>
-
+  <h2 id='name'>1</h2>
 </body>
 <script>
+  document.onload = function () {
+    console.log(window.name);
+    document.getElementById('name').innerText = window.name;
+    // window.name = 'bcd';
+  }
+
   function receiveMessage(event) {
     // Do we trust the sender of this message?
 

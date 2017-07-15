@@ -95,3 +95,11 @@ function checkWhiteList(origin){
 
 ### nginx反向代理 
 nginx反向代理 这个方法一般很少有人提及，但是他可以不用目标服务器配合，不过需要你搭建一个中转nginx服务器，用于转发请求
+
+
+### window.name跨域
+
+
+
+## 参考资料
+[HTML5 postMessage 和 onmessage API 详细应用](https://www.ibm.com/developerworks/cn/web/1301_jiangjj_html5message/)
