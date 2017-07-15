@@ -77,6 +77,8 @@
 - 浏览器模式(解释清楚算加分项)
 
 ## ES6
+- [let&const](es6/let&const.md)
+- [变量解构](es6/destructuring.md)
 - [箭头函数](/es6/arrow.md)
 - [class](/es6/class.md)
 

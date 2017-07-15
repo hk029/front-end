@@ -205,3 +205,6 @@ var constantize = (obj) => {
 };
 ```
 
+
+## 参考文章
+[ECMAScript 6 入门](http://es6.ruanyifeng.com/)

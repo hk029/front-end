@@ -1,3 +1,5 @@
+
+> 这部分大部分是张贵旭同学整理的（https://github.com/zhangguixu）
 # 同源策略 和 部分其他跨域方法
 
 同源策略是对JavaScript代码能够操作哪些Web内容的一条完整的安全限制。具体来说，脚本只能读取和所属文档来源相同的窗口和文档的属性。
@@ -110,5 +112,8 @@ window.name原理：
 ![](http://www.planabc.net/wp-content/uploads/2008/08/windowname.png)
 
 ## 参考资料
+[https://github.com/zhangguixu/front-end](https://github.com/zhangguixu/front-end)
+
 [使用 window.name 解决跨域问题](http://www.planabc.net/2008/09/01/window_name_transport/)
+
 [HTML5 postMessage 和 onmessage API 详细应用](https://www.ibm.com/developerworks/cn/web/1301_jiangjj_html5message/)
