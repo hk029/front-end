@@ -1,3 +1,15 @@
+# front-end
+前端基本功以及面试必备知识。
+大家可以把自己想到的常用知识或者面试题补充在下面。每个topic对应一个md文件。可以在现有的文件上进行修改，也可以新建文件保存到对应的文件目录下。
+每篇文章的内容都是可以修改的，大家可以增加自己的内容。但是请尽量不要直接复制粘贴博客原文，**最好是自己的思路，整理，总结**。
+请把**参考的博客,文章地址**放到每篇文章的`参考文章`后面，方便别人进行扩展阅读。（也可以在引用部分进行标注）
+> 注意：请按照下面格式进行文件的添加，readme部分只做目录
+
+如果新增或修改，请在当前页进行标注：
+- `+6位时间`表示完成了当前文章（从无到有）
+- `!6位时间`表示修改当前文章
+例：+170716 表示在2017年7月16日增加了当前文章
+
 ## 目录
 ---
 - [front-end](#front-end)
@@ -16,14 +28,8 @@
   - [算法题：](#算法题)
   - [面试题](#面试题)
 ---
-# front-end
-前端基本功以及面试必备知识。
-大家可以把自己想到的常用知识或者面试题补充在下面。每个topic对应一个md文件。可以在现有的文件上进行修改，也可以新建文件保存到对应的文件目录下。
-每篇文章的内容都是可以修改的，大家可以增加自己的内容。但是请尽量不要直接复制粘贴博客原文，**最好是自己的思路，整理，总结**。
-请把**参考的博客,文章地址**放到每篇文章的`参考文章`后面，方便别人进行扩展阅读。（也可以在引用部分进行标注）
-> 注意：请按照下面格式进行文件的添加，readme部分只做目录
 ## 前端综合
-- [同源问题与跨域](/about_js/sameorigin.md)
+- [同源问题与跨域](/about_js/sameorigin.md) +170715
 - [cache](/overall/cache.md)
 - [cookie](/overall/cookie.md)
 - [session](/overall/session.md)
@@ -38,23 +44,22 @@
 ## JS相关
 - [原型(链)](/about_js/prototype.md)
 - [如何实现继承](about_js/extend.md)
-- [this(call apply bind)](about_js/this.md)
+- [this(call apply bind)](about_js/this.md) +170715 
 - [闭包](/about_js/closure.md)
 - [ajax](/about_js/ajax.md)
-- [jsonp](about_js/jsonp.md)
-- [常用dom操作](about_js/dom.md)
+- [jsonp](about_js/jsonp.md) +170715 
+- [常用dom操作](about_js/dom.md) +170715 
 - [数组相关](/about_js/array.md)
 - [链式调用](/about_js/chain.md)
 - [上下文](/about_js/context.md)
 - [事件](/about_js/event.md)
 - [事件委托](/about_js/delegation.md)
-- [jsonp](/about_js/jsonp.md)
 - [polyfill](/about_js/polyfill.md)
 ### 常见编程考验
-- [如何clone一个对象(深拷贝)](about_js/clone.md)
+- [如何clone一个对象(深拷贝)](about_js/clone.md) +170715 
 - [如何实现数组去重](about_js/duplication.md)
 - [遍历DOM节点](about_js/traverse.md)
-- [实现一个lazyman](about_js/lazyman.md)
+- [实现一个lazyman](about_js/lazyman.md) +170715 
 ## css 相关
 - [盒模型](/about_css/box.md)
 - [层叠](/about_css/cascade.md)
@@ -68,28 +73,28 @@
 - [css选择器](/about_css/selector.md)
 ### 常见编程考验
 - [基本布局](/about_css/layout.md)
-- [实现水平居中](/about_css/center.md)
-- [实现垂直居中](/about_css/vcenter.md)
-- [实现水平垂直居中](/about_css/hvcenter.md)
+- [实现水平居中](/about_css/center.md) +170715 
+- [实现垂直居中](/about_css/vcenter.md) +170715 
+- [实现水平垂直居中](/about_css/hvcenter.md) +170715 
 ## html 相关
 - [doctyp](/about_html/doctype.md)
 - [head](/about_html/head.md)
 - [语义化标签](/about_html/semantic.md)
-- [常用标签](/about_html/tags.md)
+- [常用标签](/about_html/tags.md) +170715 
 - [viewpor](/about_html/viewport.md)
 ## http,浏览器相关
 - 常见相应代码
 - http头
 - 浏览器模式(解释清楚算加分项)
 ## ES6
-- [let&const](es6/let&const.md)
-- [变量解构](es6/destructuring.md)
-- [箭头函数](/es6/arrow.md)
+- [let&const](es6/let&const.md) +170715 
+- [变量解构](es6/destructuring.md) +170715 
+- [箭头函数](/es6/arrow.md) +170715 
 - [class](/es6/class.md)
 ## 框架，工具
 ### vue
 - [vue相关](/framework/vue/vue.md)
-- [vuex](/framework/vue/vuex.md)
+- [vuex](/framework/vue/vuex.md) +170715 
 - [vue-router](/framework/vue/vue_router.md)
 ### jquery
 ### angular 
