@@ -23,11 +23,14 @@ while((match = reg.exec(data)) != null){
     firstLevel = level;
   }
   // console.log(title,level);
-  var url = title.replace(/#+\s/g,'');
-  title ='  '.repeat(level-firstLevel) + `- [${url}](#${url})`;
+  title = title.replace(/#+\s/g,'');
+  //github上的锚点规则，会把以下符号替换掉，并且把空格替换成-
+  var url = title.replace(/[()（）：.]/g,'').replace(/\s/g,'-');
+  title ='  '.repeat(level-firstLevel) + `- [${title}](#${url})`;
+
   toc += title + '\n';
 }
 console.log(toc);
 data  = toc + data;
 
-// fs.writeFileSync('./test.md',data);
+fs.writeFileSync('./test.md',data);
