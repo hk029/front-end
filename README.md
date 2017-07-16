@@ -24,8 +24,8 @@
 > 注意：请按照下面格式进行文件的添加，readme部分只做目录
 ## 前端综合
 - [同源问题与跨域](/about_js/sameorigin.md) +
-- [cache](/overall/cache.md) -
-- [cookie](/overall/cookie.md) V
+- [cache](/overall/cache.md) 
+- [cookie](/overall/cookie.md) !0705
 - [session](/overall/session.md)
 - [flex布局](/overall/flex.md)
 - [generator](/overall/generator.md)
