@@ -29,9 +29,15 @@
   - [面试题](#面试题)
 ---
 ## 前端综合
+<<<<<<< HEAD
 - [同源问题与跨域](/about_js/sameorigin.md) +170715
 - [cache](/overall/cache.md)
 - [cookie](/overall/cookie.md)
+=======
+- [同源问题与跨域](/about_js/sameorigin.md) +
+- [cache](/overall/cache.md) 
+- [cookie](/overall/cookie.md) !0705
+>>>>>>> 040a9ef3ae2cf35d261eb74d8ba66837a88ca4a3
 - [session](/overall/session.md)
 - [flex布局](/overall/flex.md)
 - [generator](/overall/generator.md)
