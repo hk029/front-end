@@ -23,9 +23,9 @@
 请把**参考的博客,文章地址**放到每篇文章的`参考文章`后面，方便别人进行扩展阅读。（也可以在引用部分进行标注）
 > 注意：请按照下面格式进行文件的添加，readme部分只做目录
 ## 前端综合
-- [同源问题与跨域](/about_js/sameorigin.md)
-- [cache](/overall/cache.md)
-- [cookie](/overall/cookie.md)
+- [同源问题与跨域](/about_js/sameorigin.md) +
+- [cache](/overall/cache.md) -
+- [cookie](/overall/cookie.md) V
 - [session](/overall/session.md)
 - [flex布局](/overall/flex.md)
 - [generator](/overall/generator.md)
