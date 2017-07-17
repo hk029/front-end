@@ -43,15 +43,15 @@
 - [fiddler使用](/overall/fiddler.md)
 ## JS相关
 - [原型(链)](/about_js/prototype.md)
-- [如何实现继承](about_js/extend.md)
-- [this(call apply bind)](about_js/this.md) +170715 
+- [创建对象和继承](about_js/extend.md) +170717
+- [This (call apply bind)](about_js/this.md) +170715 
+- [执行环境和作用域链](/about_js/context.md) +170717
 - [闭包](/about_js/closure.md)
 - [ajax](/about_js/ajax.md)
 - [jsonp](about_js/jsonp.md) +170715 
 - [常用dom操作](about_js/dom.md) +170715 
 - [数组相关](/about_js/array.md)
 - [链式调用](/about_js/chain.md)
-- [上下文](/about_js/context.md)
 - [事件](/about_js/event.md)
 - [事件委托](/about_js/delegation.md)
 - [polyfill](/about_js/polyfill.md)
