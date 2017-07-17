@@ -31,3 +31,4 @@ readDir(process.cwd(), function (file) {
 
 fs.writeFileSync('files.md',str);
 console.log(files);
+
