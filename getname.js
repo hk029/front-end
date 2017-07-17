@@ -17,11 +17,5 @@ readDir(process.cwd(), function (file) {
   filters: [/\.git/g]
 });
 
-<<<<<<< HEAD
-fs.writeFileSync('files.md',str);
-console.log(files);
-
-=======
 // fs.writeFileSync('files.md',str);
 // console.log(files);
->>>>>>> c8c3e3465008cd8e2ba47cd13c8f1ba3fa93f197

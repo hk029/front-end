@@ -19,8 +19,7 @@ var genToc = function(file, flag) {
   var firstLevel = 0;
 
   //先把之前的目替删除
-  data = data.replace(/\#\#\s目录[\s\S]*---.*/g, "");
-  console.log(data);
+  data = data.replace(/\#\#\s目录[\s\S]*---/g, "");
   var lines = data.split("\n");
   lines.forEach(line => {
     //判断
@@ -46,7 +45,7 @@ var genToc = function(file, flag) {
       newData += "\n";
     }
   });
-  toc += "---\n";
+  toc += "---\n\n";
   if (flag) {
     newData = newData.replace(/\[TOC\]/g, toc);
   } else {
