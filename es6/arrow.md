@@ -8,6 +8,7 @@
   - [this](#this)
   - [arguments,super,target](#arguments,super,target)
 ---
+
 ## 箭头函数
 如果没有参数，必须要用一个括号，只有一个参数，不用写括号，返回值不用写return
 ```javascript

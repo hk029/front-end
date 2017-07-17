@@ -11,6 +11,7 @@
   - [!const本质](#!const本质)
 - [参考文章](#参考文章)
 ---
+
 ## let & const
 let和const注意：只有在`{}`中才有作用域（if单语句不加{}  不能用let）
 ```javascript

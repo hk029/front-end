@@ -11,6 +11,7 @@ var readDir = require("./readDir.js");
 
 var genToc = function(file, flag) {
   if (file.substr(-3) !== ".md") return false;
+  console.log(file);
   var data = fs.readFileSync(file) + ""; //转成字符串
   var newData = "";
   var reg = /^#+\s(.*)/gm;
@@ -19,20 +20,21 @@ var genToc = function(file, flag) {
   var firstLevel = 0;
 
   //先把之前的目替删除
-  data = data.replace(/\#\#\s目录[\s\S]*---/g, "");
+  data = data.replace(/\#\#\s目录[\s\S]*-{3}/g, "");
   var lines = data.split("\n");
   lines.forEach(line => {
     //判断
     if (line.length > 2) {
       newData += line;
       if ((match = reg.exec(line)) !== null) {
-        let reg2 = /^(#+)/g;
+        let reg2 = /^(\#+)/g;
         var title = line;
         var level = reg2.exec(title)[1].length;
         //确定第一个是几集标题
         if (!firstLevel) {
           firstLevel = level;
         }
+        console.log(line,firstLevel,level);
         title = match[1];
         //github上的锚点规则，会把以下符号替换掉，并且把空格替换成-
         var url = title.replace(/[()（）：.]/g, "").replace(/\s/g, "-");

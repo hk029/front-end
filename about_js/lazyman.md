@@ -3,6 +3,7 @@
 - [lazyman](#lazyman)
   - [代码](#代码)
 ---
+
 # lazyman
 lazyman是一道很经典的面试题，大概题目意思是实现链式调用。
 > 实现一个LazyMan，可以按照以下方式调用:
