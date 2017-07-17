@@ -21,7 +21,7 @@
 ## 不严格的同源策略
 ### 子域问题（document.domian）
 同源策略给使用多个子域的大站点带来一些问题。
-例如：来自`home.example.com`的文档里的脚本想要合法地读取`developer.example.com`载入的文档的属性
+例如：来自 `home.example.com` 的文档里的脚本想要合法地读取`developer.example.com`载入的文档的属性
 为了支持这种类型的多域名站点，可以使用Document对象的`domain`属性。在默认情况下，domain存放的是载入文档的服务器的主机名。可以设置这一属性，不过使用的字符串必须具有有效的域前缀或它本身。
 ```javascript
 //设置home.example.com的文档
