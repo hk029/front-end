@@ -82,6 +82,7 @@ function SpecialArray(){
 - 原型式继承
 - 寄生式继承
 - 寄生组合式继承
+
 es6之后可以用class继承
 ```js
 /*
@@ -127,8 +128,11 @@ function inherit(subType,superType){
 }
 ```
 ## es6的class
+
 利用class实现继承
+
 下面利用ES6引入的新语法糖，class、extends关键字对上述实现继承的代码进行改写：
+
 ```js
 class Person {
     constructor (name, age) {
