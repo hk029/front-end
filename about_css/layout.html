@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>左栏固定宽度，右栏自适应之负margin法</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+	}
+	.container{
+		/*padding-left: 130px;
+		padding-right: 100px;*/
+    
+		_zoom: 1;
+		/*兼容IE6下左栏消失问题*/
+	}
+	.left{
+    /*display: inline-block;*/
+		float: left;
+		width: 130px;
+		height: 200px;
+		background: #ccc;
+		/*margin-left: -100%;*/
+		position: relative;
+		/*兼容IE6下左栏消失问题，IE6真不让人省心啊>_<*/
+	}
+  .right{
+    /*display: inline-block;*/
+		float: right;
+    width:100px;
+    height: 200px;
+    /*margin-left:-100px;*/
+    background:lightcoral;
+  }
+	.main{
+    /*display: inline-block;*/
+		/*float: left;*/
+    overflow: hidden;
+		height: 300px;
+    /*width: 100%;*/
+    /*float: right;*/
+/*margin-left: 130px;*/
+    /*margin-right: 100px;*/
+		background: #0099ff;
+	}
+	.footer{
+		clear: both;
+		text-align: center;
+		background: #009000;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="left">
+			左栏
+		</div>
+		<div class="right">
+			右栏
+		</div>
+		<div class="main">
+			中栏
+		</div>
+	</div>
+	<div class="footer">
+		底栏
+	</div>
+</body>
+</html>
