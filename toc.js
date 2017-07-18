@@ -20,7 +20,7 @@ var genToc = function(file, flag) {
   var firstLevel = 0;
 
   //先把之前的目替删除
-  data = data.replace(/\#\#\s目录[\s\S]*-{3}/g, "");
+  data = data.replace(/\#\#\s目录[\s\S]*-{3}\n/g, "");
   var lines = data.split("\n");
   lines.forEach(line => {
     //判断
