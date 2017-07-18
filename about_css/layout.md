@@ -9,13 +9,14 @@
 左侧200px固定，右侧自适应
 ![your text](http://o7bk1ffzo.bkt.clouddn.com/1500385653092)
 可选方案很多，根据项目要求选择，一般我选**第一种方案**。方案四**全浮动**常用来做圣杯（双飞翼）布局。
-| 套父亲盒          | 左                            | 右                       | 原理                                       | 注意                              |
-| ------------- | ---------------------------- | ----------------------- | ---------------------------------------- | ------------------------------- |
-| \             | float:left                   | overflow:auto/hidden    | BFC紧挨浮动盒子                                | 底下清除浮动或者套个父亲,overflow:hidden    |
-| 随意            | position:absolute/float:left | margin-left:200px       | 空出左边的区域                                  | 左侧太高的话，无法撑开container，有底栏的时候问题严重 |
-| 需要            | position:absolute            | padding-left:200px      | 空出左边区域                                   | 问题同上                            |
+
+| 套父亲盒 | 左         | 右           | 原理                           | 注意                    |
+| -- | -- | -- | -- | -- |
+| \             | float:left                   | overflow:auto/hidden    | BFC紧挨浮动盒子        | 底下清除浮动或者套个父亲,overflow:hidden    |
+| 随意            | position:absolute/float:left | margin-left:200px       | 空出左边的区域              | 左侧太高的话，无法撑开container，有底栏的时候问题严重 |
+| 需要            | position:absolute            | padding-left:200px      | 空出左边区域         | 问题同上          |
 | padding:200px | margin-left:-200px           | float:right，width:100%; | 主区域浮动，浮动盒子相互紧挨，width100%，通过父亲盒子的padding控制左侧区域。 | 父亲盒建立BFC就没什么问题                  |
-|               |                              |                         |                                          |                                 |
+
 ## 三栏布局
 ### 简单三栏布局
 左float:left
