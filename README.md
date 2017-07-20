@@ -41,7 +41,7 @@
 - [存储相关](/overall/storage.md)
 - [fiddler使用](/overall/fiddler.md)
 ## JS相关
-- [原型(链)](/about_js/prototype.md)
+- [原型(链)](/about_js/prototype.md) +170720
 - [创建对象和继承](about_js/extend.md) +170717
 - [This (call apply bind)](about_js/this.md) +170715 
 - [执行环境和作用域链](/about_js/context.md) +170717
