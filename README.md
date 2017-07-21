@@ -46,10 +46,11 @@
 - [This (call apply bind)](about_js/this.md) +170715 
 - [执行环境和作用域链](/about_js/context.md) +170717
 - [闭包](/about_js/closure.md) +170721
-- [ajax](/about_js/ajax.md)
+- [ajax](/about_js/ajax.md) +170721
 - [jsonp](about_js/jsonp.md) +170715 
 - [常用dom操作](about_js/dom.md) +170715 
-- [数组相关](/about_js/array.md)
+- [数组相关](/about_js/array.md) +170721
+- [字符串相关](/about_js/string.md) +170721
 - [链式调用](/about_js/chain.md)
 - [事件](/about_js/event.md) +170720 by xiaoch11
 - [事件委托](/about_js/delegation.md)
