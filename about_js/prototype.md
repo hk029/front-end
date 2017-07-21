@@ -37,3 +37,5 @@ p -> p.__proto__ === Paginator.prototype -> Paginator.prototype.__proto__ === Ob
 ## 参考文章：
 
 [图解prototype和__proto__](http://www.cnblogs.com/shuiyi/p/5305435.html)
+
+[简单粗暴地理解js原型链--js面向对象编程](http://www.cnblogs.com/qieguo/p/5451626.html)

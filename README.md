@@ -45,7 +45,7 @@
 - [创建对象和继承](about_js/extend.md) +170717
 - [This (call apply bind)](about_js/this.md) +170715 
 - [执行环境和作用域链](/about_js/context.md) +170717
-- [闭包](/about_js/closure.md)
+- [闭包](/about_js/closure.md) +170721
 - [ajax](/about_js/ajax.md)
 - [jsonp](about_js/jsonp.md) +170715 
 - [常用dom操作](about_js/dom.md) +170715 
