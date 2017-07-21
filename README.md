@@ -51,7 +51,7 @@
 - [常用dom操作](about_js/dom.md) +170715 
 - [数组相关](/about_js/array.md)
 - [链式调用](/about_js/chain.md)
-- [事件](/about_js/event.md)
+- [事件](/about_js/event.md) +170720 by xiaoch11
 - [事件委托](/about_js/delegation.md)
 - [polyfill](/about_js/polyfill.md)
 ### 常见编程考验
@@ -69,7 +69,7 @@
 - [hack](/about_css/hack.md)
 - [less](/about_css/less.md)
 - [sass](/about_css/sass.md)
-- [css选择器](/about_css/selector.md)
+- [css选择器](/about_css/selector.md) +170720 by xiaoch11
 ### 常见编程考验
 - [基本布局](/about_css/layout.md)  +170718
 - [实现水平居中](/about_css/center.md) +170715 
