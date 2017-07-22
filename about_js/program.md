@@ -74,7 +74,8 @@ console.log(newArr);
 ## 如何实现深浅拷贝
 1. 浅拷贝
 父对象修改方法，会影响子对象 
-**注意：**Object.assign就是浅拷贝，只拷贝一层！深层对象不拷贝
+
+**注意:** Object.assign就是浅拷贝，只拷贝一层！深层对象不拷贝
 ```js
 function extendCopy(p) {　　　　
   var c = {};　　　　
@@ -85,6 +86,7 @@ function extendCopy(p) {　　　　
   return c;　　
 ```
 2. 深拷贝：
+
 比较简单的实现是直接使用JSON.stringify和parse
 ```js
 var cloneObj = function(obj){
@@ -102,8 +104,5 @@ var cloneObj = function(obj){
     }
     return newobj;
 };
-作者：知乎用户
-链接：https://www.zhihu.com/question/23031215/answer/31944721
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
 ```
