@@ -56,8 +56,9 @@
 - [事件委托](/about_js/delegation.md)
 - [polyfill](/about_js/polyfill.md)
 ### 常见编程考验
-- [如何clone一个对象(深拷贝)](about_js/clone.md) +170715 
-- [如何实现数组去重](about_js/duplication.md)
+- [如何clone一个对象(深拷贝)](about_js/program.md/#如何实现深浅拷贝) +170715 
+- [如何实现数组去重](about_js/program.md/#如何实现数组去重) +170722
+- [如何实现sum(1,2),sum(1)(2)](about_js/program.md/#如何实现sum1,2,sum12) +170722
 - [遍历DOM节点](about_js/traverse.md)
 - [实现一个lazyman](about_js/lazyman.md) +170715 
 ## css 相关
