@@ -4,119 +4,177 @@
 - [相关代码](#相关代码)
 ---
 
-## jsonp原理
+## jsonp原理
 
->jsonp的原理实际上是用的**js标签src能跨域的原理**。要求对方返回的数据是包裹在一个给定的函数名中的。提前在当前html代码中准备好处理函数。动态的创建一个script的标签，scr制定到特定的url，获取到数据后，调用已经准备好的全局函数。然后删除该script标签
 
-## 相关代码
+>jsonp的原理实际上是用的**js标签src能跨域的原理**。要求对方返回的数据是包裹在一个给定的函数名中的。提前在当前html代码中准备好处理函数。动态的创建一个script的标签，scr制定到特定的url，获取到数据后，调用已经准备好的全局函数。然后删除该script标签
 
-```js
 
-var $jsonp = {
+## 相关代码
 
-  getJson: function (url, fn) {
 
-    var name = 'jsonp_' + (+new Date()); //设置一个名字
+```js
 
-    //重新拼装url,加入callback
 
-    url = url + (url.indexOf('?') === -1 ? '?' : '&') + 'callback='+name;
+var $jsonp = {
 
-    
 
-	//创建script标签
+  getJson: function (url, fn) {
 
-    var script = document.createElement("script");
 
-    script.type = "text/javascript";
+    var name = 'jsonp_' + (+new Date()); //设置一个名字
 
-    script.src = url; // 设置要远程的url
 
-    script.id = "id_" + name; // 设置id，为了后面可以删除
+    //重新拼装url,加入callback
 
-    
 
-	// 把传进来的函数重新组装，并把它设置为全局函数，远程就是调用这个函数
+    url = url + (url.indexOf('?') === -1 ? '?' : '&') + 'callback='+name;
 
-    window[name] = function (json) { 
 
-      window[name] = undefined; // 执行这个函数后，要销毁
+    
 
-      var elem = document.getElementById("id_" + name); // 获取这个script的元素
 
-      $jsonp.removeElem(elem); // 删除head里面插入的script，这三步都是为了不影响污染整个DOM
+	//创建script标签
 
-      fn(json); // 执行传入的的函数
 
-    };
+    var script = document.createElement("script");
 
-    // 在head里面插入script元素
 
-    var head = document.getElementsByTagName("head");
+    script.type = "text/javascript";
 
-    if (head && head[0]) {
 
-      head[0].appendChild(script);
+    script.src = url; // 设置要远程的url
 
-    }
 
-  },
+    script.id = "id_" + name; // 设置id，为了后面可以删除
 
-  removeElem : function (elem) {
 
-    var parent = elem.parentNode;
+    
 
-    if(parent && parent.nodeType !== 11)
 
-    {
+	// 把传进来的函数重新组装，并把它设置为全局函数，远程就是调用这个函数
 
-      parent.removeChild(elem);
 
-    }
+    window[name] = function (json) { 
 
-  },
 
-  //扩展功能，可以传入data，进行查询字符串拼装
+      window[name] = undefined; // 执行这个函数后，要销毁
 
-  parseData: function (data) {  
 
-    var ret = "";
+      var elem = document.getElementById("id_" + name); // 获取这个script的元素
 
-    if (typeof data === "string") {
 
-      ret = data;
+      $jsonp.removeElem(elem); // 删除head里面插入的script，这三步都是为了不影响污染整个DOM
 
-    } else if (typeof data === "object") {
 
-      for (var key in data) {
+      fn(json); // 执行传入的的函数
 
-        ret += "&" + key + "=" + encodeURIComponent(data[key]);
 
-      }
+    };
 
-    }
 
-    // 加个时间戳，防止缓存
+    // 在head里面插入script元素
 
-    ret += "&_time=" + (+new Date());
 
-    ret = ret.substr(1);
+    var head = document.getElementsByTagName("head");
 
-    return ret;
 
-  }
+    if (head && head[0]) {
 
-```
 
-使用
+      head[0].appendChild(script);
 
-```js
 
-  $jsonp.getJson('http://abc.com',function (data) {
+    }
 
-    console.log(data);
 
-  });
+  },
 
-```
+
+  removeElem : function (elem) {
+
+
+    var parent = elem.parentNode;
+
+
+    if(parent && parent.nodeType !== 11)
+
+
+    {
+
+
+      parent.removeChild(elem);
+
+
+    }
+
+
+  },
+
+
+  //扩展功能，可以传入data，进行查询字符串拼装
+
+
+  parseData: function (data) {  
+
+
+    var ret = "";
+
+
+    if (typeof data === "string") {
+
+
+      ret = data;
+
+
+    } else if (typeof data === "object") {
+
+
+      for (var key in data) {
+
+
+        ret += "&" + key + "=" + encodeURIComponent(data[key]);
+
+
+      }
+
+
+    }
+
+
+    // 加个时间戳，防止缓存
+
+
+    ret += "&_time=" + (+new Date());
+
+
+    ret = ret.substr(1);
+
+
+    return ret;
+
+
+  }
+
+
+```
+
+
+使用
+
+
+```js
+
+
+  $jsonp.getJson('http://abc.com',function (data) {
+
+
+    console.log(data);
+
+
+  });
+
+
+```
+
 

@@ -29,22 +29,22 @@ var genToc = function(file, flag) {
       if ((match = reg.exec(line)) !== null) {
         let reg2 = /^(\#+)/g;
         var title = line;
+        console.log(title);
         var level = reg2.exec(title)[1].length;
         //确定第一个是几集标题
         if (!firstLevel) {
           firstLevel = level;
         }
-        console.log(line,firstLevel,level);
+        // console.log(line,firstLevel,level);
         title = match[1];
         //github上的锚点规则，会把以下符号替换掉，并且把空格替换成-
         var url = title.replace(/[()（）：.]/g, "").replace(/\s/g, "-");
         //根据最高层级的情况进行缩进
         title = "  ".repeat(level - firstLevel) + `- [${title}](#${url})`;
         toc += title + "\n";
-
         //给每一个标题加上返回目录
       }
-      newData += "\n\n";
+      newData += "\n";
     }
   });
   toc += "---\n\n";
