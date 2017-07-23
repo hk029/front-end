@@ -19,6 +19,10 @@
   - [组织事件冒泡](#组织事件冒泡)
 - [原生js实现事件代理，兼容浏览器](#原生js实现事件代理，兼容浏览器)
 - [自定义事件模型](#自定义事件模型)
+- [模拟事件](#模拟事件)
+  - [初始化事件](#初始化事件)
+  - [监听事件](#监听事件)
+  - [触发事件](#触发事件)
 ---
 
 ## 事件绑定
@@ -300,5 +304,85 @@ var emmitter = new emmitter();
 emmitter.bind('myevent',function(arg1){
         console.log(arg1,arg2);
 emmitter.trigger('myevent','','')
+```
+
+## 模拟事件
+
+### 创建事件
+
+```js
+document.createEvent('HTMLEvents');
+```
+
+　　参数是字符串类型，表示要创建的事件类型。
+
+- uievents；
+
+- mutationevents；
+
+- htmlevents；
+
+### 初始化事件
+
+```js
+ev.initEvent('listen', false, false);
+```
+
+　　参数说明：
+
+- eventType：事件名称；
+
+- canBubble：事件是否冒泡；
+
+- cancelable：是否可以用 preventDefault() 方法取消事件；
+
+### 监听事件
+
+```js
+document.addEventListener(dataavailable, handler, param3);
+```
+
+　　参数说明：
+
+- dataavailable：监听的事件名称；
+
+- handler：处理函数；
+
+- param3：是否是扑获事件模型；
+
+### 触发事件
+
+```js
+document.dispatchEvent(ev);
+```
+
+　　参数说明：
+
+　　ev:第一步所创建的事件对象；
+
+```html
+<html>
+<head>
+<meta name="viewport" content="width=device-width" />
+<title>javascript自定义事件</title>
+<script type="text/javascript">
+　　//创建事件
+　　var ev = document.createEvent('HTMLEvents');
+　　window.onload = function () {
+　　　　//初始化事件
+　　　　ev.initEvent('listen', false, false);
+　　　　//监听事件与绑定处理函数
+　　　　document.addEventListener("listen", function (e) {
+　　　　　　alert("事件被触发!");
+　　　　}, false);
+　　}
+</script>
+</head>
+<body>
+　　<div>
+　　　　<input type="button" value="触发" onclick="document.dispatchEvent(ev);" />
+　　</div>
+</body>
+</html>
 ```
 
