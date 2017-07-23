@@ -44,7 +44,7 @@ var genToc = function(file, flag) {
 
         //给每一个标题加上返回目录
       }
-      newData += "\n";
+      newData += "\r\n\r\n";
     }
   });
   toc += "---\n\n";
