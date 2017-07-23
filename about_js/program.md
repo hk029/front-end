@@ -3,6 +3,7 @@
 - [如何实现sum(1,2),sum(1)(2)](#如何实现sum1,2,sum12)
 - [如何实现数组去重](#如何实现数组去重)
 - [如何实现深浅拷贝](#如何实现深浅拷贝)
+- [如何实现页面关闭通知后台](#如何实现页面关闭通知后台)
 ---
 
 ## 如何实现sum(1,2),sum(1)(2)
@@ -118,4 +119,35 @@ var cloneObj = function(obj){
     }
     return newobj;
 ```
+
+## 如何实现页面关闭通知后台
+
+1. 定时发送心跳
+
+```js
+setInterval(function () {
+  //send meg to server
+},1000)
+```
+
+2. onbeforeunload()事件
+
+```js
+window.onbeforeunload = function(){
+  //send msg to server
+  return 'close'; //必须要返回，有的浏览器会用这个文字作提示，但是chrome用默认的
+```
+
+一个判断页面是否真的关闭和刷新的好方法： 
+
+```js
+window.onbeforeunload=function (){ 
+alert("===onbeforeunload==="); 
+if(event.clientX>document.body.clientWidth && event.clientY < 0 || event.altKey){ 
+alert("你关闭了浏览器"); 
+}else{ 
+alert("你正在刷新页面"); 
+```
+
+![your text](http://o7bk1ffzo.bkt.clouddn.com/1500819726098)
 

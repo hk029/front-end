@@ -5,6 +5,10 @@
     - [跨域资源共享（CORS）](#跨域资源共享CORS)
     - [跨文档消息](#跨文档消息)
     - [nginx反向代理 ](#nginx反向代理-)
+    - [图像Ping](#图像Ping)
+    - [JSONP](#JSONP)
+    - [comet](#comet)
+    - [websocket](#websocket)
     - [window.name跨域](#windowname跨域)
   - [参考资料](#参考资料)
 ---
@@ -62,6 +66,10 @@ Cross-Origin Resource Sharing这项技术已经成为一项标准，参见：[ht
 
 它允许服务器用头信息显示地列出源，或使用通配符来匹配所有源并允许跨域HTTP请求，已经运用到`XMLHttpRequest Level 2`。这样就不会被同源策略所限制了。
 
+但是默认跨域请求是不提供凭据的（coookie，ssl证明），通过把`withCredentials`属性设为true可以执行某个请求发送凭证。如果服务器接受，可以用以下http头响应
+
+Access-Control-Allow-Credentials:true
+
 ### 跨文档消息
 
 跨文档消息（cross-document messaging），允许来自一个文档的脚本可以传递文本消息到另一个文档里的脚本，而不管脚本的来源是否不同。调用window对象的`postMessage()`，方法，可以异步传递消息，利用`onmessage`事件处理函数来处理它。采用`域判断`来确定信任源。
@@ -99,6 +107,28 @@ function checkWhiteList(origin){
 ### nginx反向代理 
 
 nginx反向代理 这个方法一般很少有人提及，但是他可以不用目标服务器配合，不过需要你搭建一个中转nginx服务器，用于转发请求
+
+### 图像Ping
+
+利用图像的src标签跨域，一般用来做跟踪用户点击或者动态广告曝光次数。
+
+缺点：
+
+- 只能发送get请求
+
+- 无法访问服务器响应文本
+
+### JSONP
+
+详情见[jsonp](/about_js/jsonp.md)
+
+### comet
+
+详情见[comet](/about_js/comet.md)
+
+### websocket
+
+详情见[websocket](/about_js/websocket.md)
 
 ### window.name跨域
 
