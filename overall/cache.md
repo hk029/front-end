@@ -14,140 +14,71 @@
 ---
 
 # Web缓存
-
 在前端开发中，性能一直都是被大家所重视的一点，然而判断一个网站的性能最直观的就是看网页打开的速度。其中提高网页反应速度的一个方式就是使用缓存。一个优秀的缓存策略可以缩短网页请求资源的距离，减少延迟，并且由于缓存文件可以重复利用，还可以减少带宽，降低网络负荷。
-
 ## 缓存分类
-
 Web缓存有：
-
 1. 数据库缓存
-
 2. 代理服务器缓存（共享缓存）
-
 3. CDN缓存
-
 4. 浏览器缓存
-
 ## 浏览器的缓存机制
-
 浏览器会分别从三个方面定义缓存：
-
 1. 是否需要缓存副本（缓存存储策略）
-
 2. 缓存副本是否过期（缓存过期策略）；
-
 3. 与服务器验证缓存副本是否可用（缓存对比策略）如下图:
-
 ![your text](http://o7bk1ffzo.bkt.clouddn.com/1500796319004)
-
 ### 缓存策略
-
 页面的缓存状态是由`header`决定的，header的参数有四种。
-
 - cache-control (替代pragma)
-
 - expires (被cache-control里的max-age替代)
-
 - last-modified
-
 - etag （替代last-modified)
-
 ![your text](http://o7bk1ffzo.bkt.clouddn.com/1500797355879)
-
 ## 存储策略
-
 由上图可以看出:`no-store`,`no-cache`,`max-age`这三个消息头的字段由服务器返回给浏览器，其中no-cache,max-age表示需要缓存副本，
-
 **no-store则表示不必缓存到副本之中。**
-
 **no-cache表示每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。**
-
 可能有人会问为什么no—cache还会缓存，这里通过实验加上自己的理解为：服务器返回no-cache浏览器缓存之后第二次请求会带上no-cache字段表示不使用缓存，必须与服务器进行验证，如果验证命中（对比策略中会提到）还是会返回304状态码使用缓存副本的。一定要与no-store分清楚啊。
-
 ## 过期策略
-
 缓存过期策略主要跟两字消息的字段由关
-
 - `Expires(http 1.0)` : 过期绝对时间（零时区，是服务器返回的时间，可能会有时间误差）
-
 - `max-age(http 1.1)` : **优先级高**，随着而来的max-age（单位为s）就能解决这个问题，当时间为相对时间而且相对的是服务器返回的时间所以不会出现有误差，并且max-age和Expires同时存在的时候max-age权值更大，Expires将失效。
-
 其中还有一个启发式过期策略：当Expires和max-age这两个字段都不存在的时候，会根据服务器返回时间Date和文件最后修改时间last-modified差值的百分之十作为过期时间。
-
 ## 对比策略
-
 当缓存在设定的时间过期之后，会发送请求给服务器，但是这不代表缓存就真的“过期”，如果请求的文件到现在 还能用服务器会直接返回304状态码，告诉浏览器继续使用缓存副本从而节省了发送消息题的带宽。
-
 对于对比策略主要与两对字段有关分别为
-
 - last-Modified,if-Modified-since
-
 - Etag,if-None-Match。服务器返回的hash值(**优先级高**)
-
 在response中：服务器返回last-Modified,和Etag字段给浏览器，在response中
-
 在request中：当浏览器需要与服务器进行验证时用`if-Modified-since`和`if-None-Match`两个字段带上上次返回的last-Modified,Etag字段进行比对。(把response的那两个字段复制过来)
-
 比对成功返回304，不成功则重新返回请求文件状态码为200。与存储策略一样两个字段有优先级，当有Etag时则只需要比对Etag。
-
 Etag主要解决几个Last-Modified比较难解决的问题:
-
 1. 某些服务器不能精确得到资源的最后修改时间；
-
 2. 如果资源修改非常频繁，且在秒以下的时间内进行修改；
-
 3. 一些资源的最后修改事件改变了，但是内容没有改变；
-
 ## 用户操作行为与缓存
-
 说清了过期策略结合下图说明用户使用浏览器的时候，对缓存的操作的影响。
-
 操作行为对缓存的影响
-
 | **用户操作**      | **Expires/Cache-Control** | **Last-Modified/Etag** |
-
 | ------------- | ------------------------- | ---------------------- |
-
 | **地址栏回车**     | 有效                        | 有效                     |
-
 | **页面链接跳转**    | 有效                        | 有效                     |
-
 | **新开窗口**      | 有效                        | 有效                     |
-
 | **前进、后退**     | 有效                        | 有效                     |
-
 | **F5刷新**      | 无效                        | 有效                     |
-
 | **Ctrl+F5刷新** | 无效                        | 无效                     |
-
 关于`F5`和`Ctrl+F5`强制刷新的说明
-
 - F5主要是在请求头里加上一个max-age:0,由于max-age权限最高，设置为0则表示过期策略失效必须与服务器进行验证如果验证成功则会返回304继续使用缓存。
-
 - Ctrl+F5强制刷新则会在请求头里添加Cache-control:no-cache和Param:no-cache表示无论如何都不会使用缓存副本，必须重新返回最新文件并覆盖原先缓存副本。
-
 ## 太多的304
-
 由于F5刷新所有请求都会重新发送一遍，尽管我们知道太多的文件修改的可能性很低。
-
 为了解决这个问题，firefox和chorme有各自的优化，比如firefox会在Cache-control:max-age后面添加immutable字段，表示f5刷新永远不会设置max-age:0 这样会继续使用副本。
-
 而chorme则在max-age值较大的情况下都不会去设置max-age为0减少一些不必要的请求
-
 ## 5. 总结
-
 ![your text](http://o7bk1ffzo.bkt.clouddn.com/1500799067808)
-
 ## 参考文章
-
 http://www.alloyteam.com/2016/03/discussion-on-web-caching/
-
 [【缓存技术原理】浏览器端缓存机制详解](http://blog.csdn.net/moshenglv/article/details/52020563)
-
 http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html
-
 http://web.jobbole.com/82997/
-
 http://www.alloyteam.com/2012/03/web-cache-1-web-cache-overview/
-
