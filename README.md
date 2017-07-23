@@ -39,8 +39,6 @@
 
 ## 前端综合
 
-- [浏览器渲染原理和性能优化](/browser/howitworks.md) +170722
-
 - [web前端性能优化总结](/browser/optimize.md) +170723
 
 - [同源问题与跨域](/about_js/sameorigin.md) +170715
@@ -89,11 +87,13 @@
 
 - [字符串相关](/about_js/string.md) +170721
 
-- [链式调用](/about_js/chain.md)
+- [链式调用](/about_js/chain.md) +170723
 
 - [事件](/about_js/event.md) +170720 by xiaoch11
 
-- [事件委托](/about_js/delegation.md)
+- [事件冒泡和捕获](/about_js/bubble.md) +170723
+
+- [事件委托](/about_js/delegation.md) +170723
 
 - [polyfill](/about_js/polyfill.md)
 
@@ -155,7 +155,11 @@
 
 ## http,浏览器相关
 
-- 常见相应代码
+- [浏览器渲染原理和性能优化](/browser/howitworks.md) +170722
+
+- [常见相应代码](/browser/responsecode.md) +170723
+
+- [get和post区别](/browser/getpost.md) +170723
 
 - http头
 
