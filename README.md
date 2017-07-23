@@ -85,6 +85,10 @@
 
 - [数组相关](/about_js/array.md) +170721
 
+- [与和或操作符](/about_js/andor.md) +170723
+
+- [基本类型和隐式转换](/about_js/convert.md) +170723
+
 - [字符串相关](/about_js/string.md) +170721
 
 - [链式调用](/about_js/chain.md) +170723
