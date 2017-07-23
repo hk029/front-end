@@ -6,7 +6,9 @@
 ---
 
 ## 如何实现sum(1,2),sum(1)(2)
+
 这个函数的关键难点在与sum(1)(2),其实我们可以很容易的想到闭包，这就是很经典的闭包实现，只要返回一个函数就可以连续调用，关键是如何取得最后的总和值？这里就涉及到对toString和valueOf进行改造。
+
 ```js
 var sum = function () {
   var total = 0;
@@ -28,16 +30,22 @@ var sum = function () {
 console.log(sum(1,2,3));
 console.log(sum(1)(2,3));
 ```
+
 ## 如何实现数组去重
+
 ```js
 var array = [1,2,3,02,'02',true,'true',{a:1},'{a:1}',{a:1}]
 var newArr = [];
 ```
+
 1. 用Set
+
 ```js
 [...new Set(array)]
 ```
+
 2. 用Map
+
 ```js
 //用map
 var m = new Map();
@@ -48,7 +56,9 @@ array.forEach(e =>{
   }
 console.log(newArr);
 ```
+
 3. 用Object,需要做一些判断（object的key只能是字符串，需要区分本身是字符串和类型转换成字符串）
+
 ```js
 //用Set
 [...new Set(array)]
@@ -69,10 +79,15 @@ array.forEach((e,idx) =>{
   }
 console.log(newArr);
 ```
+
 ## 如何实现深浅拷贝
+
 1. 浅拷贝
+
 父对象修改方法，会影响子对象 
+
 **注意:** Object.assign就是浅拷贝，只拷贝一层！深层对象不拷贝
+
 ```js
 function extendCopy(p) {　　　　
   var c = {};　　　　
@@ -82,8 +97,11 @@ function extendCopy(p) {　　　　
   c.uber = p;　　　　
   return c;　　
 ```
+
 2. 深拷贝：
+
 比较简单的实现是直接使用JSON.stringify和parse
+
 ```js
 var cloneObj = function(obj){
     var str, newobj = obj.constructor === Array ? [] : {};
@@ -100,3 +118,4 @@ var cloneObj = function(obj){
     }
     return newobj;
 ```
+

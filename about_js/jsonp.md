@@ -5,8 +5,11 @@
 ---
 
 ## jsonp原理
+
 >jsonp的原理实际上是用的**js标签src能跨域的原理**。要求对方返回的数据是包裹在一个给定的函数名中的。提前在当前html代码中准备好处理函数。动态的创建一个script的标签，scr制定到特定的url，获取到数据后，调用已经准备好的全局函数。然后删除该script标签
+
 ## 相关代码
+
 ```js
 var $jsonp = {
   getJson: function (url, fn) {
@@ -56,8 +59,10 @@ var $jsonp = {
     return ret;
   }
 ```
+
 ```js
   $jsonp.getJson('http://abc.com',function (data) {
     console.log(data);
   });
 ```
+

@@ -9,7 +9,7 @@ var readDir = require("./readDir.js");
 //   filters: [/\.git/g]
 // })
 
-var genToc = function(file, flag) {
+var genToc = function (file, flag) {
   if (file.substr(-3) !== ".md") return false;
   console.log(file);
   var data = fs.readFileSync(file) + ""; //转成字符串
@@ -22,10 +22,14 @@ var genToc = function(file, flag) {
   //先把之前的目替删除
   data = data.replace(/\#\#\s目录[\s\S]*-{3}\n/g, "");
   var lines = data.split("\n");
+  var inCode = false;
   lines.forEach(line => {
     //判断
     if (line.length > 2) {
       newData += line;
+      if (line.match(/```/g)) {
+        inCode = !inCode;
+      }
       if ((match = reg.exec(line)) !== null) {
         let reg2 = /^(\#+)/g;
         var title = line;
@@ -44,7 +48,11 @@ var genToc = function(file, flag) {
         toc += title + "\n";
         //给每一个标题加上返回目录
       }
-      newData += "\n";
+      if (inCode) {
+        newData += "\n";
+      } else {
+        newData += "\n\n";
+      }
     }
   });
   toc += "---\n\n";
