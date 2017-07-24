@@ -179,6 +179,12 @@
 
 - [class](/es6/class.md)
 
+- [module](/es6/module.md) +170724
+
+- [promise](/es6/promise.md) +170724
+
+- [generator](/es6/generator.md) +170724
+
 ## 框架，工具
 
 ### vue
