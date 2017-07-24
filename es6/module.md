@@ -1,3 +1,41 @@
+## 目录
+---
+- [es6 module](#es6-module)
+  - [严格模式](#严格模式)
+  - [export](#export)
+    - [注意](#注意)
+      - [动态绑定](#动态绑定)
+      - [任意位置](#任意位置)
+  - [import](#import)
+    - [用as重命名](#用as重命名)
+    - [路径可以相对或绝对或者省略](#路径可以相对或绝对或者省略)
+    - [不能使用表达式](#不能使用表达式)
+    - [只执行加载模块](#只执行加载模块)
+    - [多次执行只处理一次](#多次执行只处理一次)
+    - [单例形式](#单例形式)
+    - [整体加载 import * as ...](#整体加载-import-*-as-)
+  - [export default](#export-default)
+    - [只能使用一次（但是可以和普通的export同时使用）](#只能使用一次但是可以和普通的export同时使用)
+    - [as default 也行](#as-default-也行)
+    - [export default a 相当于赋值操作](#export-default-a-相当于赋值操作)
+    - [也可以输出类](#也可以输出类)
+    - [例子](#例子)
+  - [export 和 import 结合](#export-和-import-结合)
+    - [改名和整体输出](#改名和整体输出)
+    - [导出默认接口](#导出默认接口)
+    - [未解决的方法](#未解决的方法)
+  - [模块继承](#模块继承)
+  - [跨模块常量](#跨模块常量)
+    - [专门文件夹做加载文件夹（写好index.js）](#专门文件夹做加载文件夹写好indexjs)
+  - [import 无法实现动态加载](#import-无法实现动态加载)
+    - [import()](#import)
+    - [适用场合](#适用场合)
+      - [**按需加载**](#**按需加载**)
+      - [条件加载](#条件加载)
+      - [动态的模块路径](#动态的模块路径)
+    - [注意点](#注意点)
+---
+
 # es6 module
 
 ES6 模块的设计思想，**是尽量的静态化**，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。比如，CommonJS 模块就是对象，输入时必须查找对象属性。
@@ -5,7 +43,6 @@ ES6 模块的设计思想，**是尽量的静态化**，使得编译时就能确
 ```
 // CommonJS模块
 let { stat, exists, readFile } = require('fs');
-
 // 等同于
 let _fs = require('fs');
 let stat = _fs.stat;
@@ -29,7 +66,9 @@ import { stat, exists, readFile } from 'fs';
 除了静态加载带来的各种好处，ES6 模块还有以下好处。
 
 - 不再需要`UMD`模块格式了，将来服务器和浏览器都会支持 ES6 模块格式。目前，通过各种工具库，其实已经做到了这一点。
+
 - 将来浏览器的新 API 就能用模块格式提供，不再必须做成全局变量或者`navigator`对象的属性。
+
 - 不再需要对象作为命名空间（比如`Math`对象），未来这些功能可以通过模块提供。
 
 ## 严格模式
@@ -39,24 +78,36 @@ ES6 的模块自动采用严格模式，不管你有没有在模块头部加上`
 严格模式主要有以下限制。
 
 - 变量必须**声明后再使用**
+
 - 函数的参数**不能有同名属性**，否则报错
+
 - 不能使用`with`语句
+
 - 不能对只读属性赋值，否则报错
+
 - **不能使用前缀0表示八进制数**，否则报错
+
 - **不能删除不可删除的属性**，否则报错
+
 - 不能删除变量`delete prop`，会报错，只能删除属性`delete global[prop]`
+
 - `eval`不会在它的外层作用域引入变量
+
 - `eval`和`arguments`不能被重新赋值
+
 - `arguments`**不会自动反映函数参数的变化**
+
 - 不能使用`arguments.callee`
+
 - 不能使用`arguments.caller`
+
 - 禁止`this`指向全局对象
+
 - 不能使用`fn.caller`和`fn.arguments`获取函数调用的堆栈
+
 - 增加了保留字（比如`protected`、`static`和`interface`）
 
 其中，尤其需要注意`this`的限制。ES6 模块之中，顶层的`this`指向`undefined`，即不应该在顶层代码使用`this`。
-
-
 
 ## export
 
@@ -67,7 +118,6 @@ var firstName = 'Michael';
 var lastName = 'Jackson';
 var year = 1958;
 function v1() {...}
-
 export {firstName, lastName, year, v1 };
 ```
 
@@ -76,7 +126,6 @@ export {firstName, lastName, year, v1 };
 ```
 function v1() { ... }
 function v2() { ... }
-
 export {
   v1 as streamV1,
   v2 as streamV2,
@@ -93,7 +142,6 @@ export {
 ```javascript
 // 报错
 export 1;
-
 // 报错
 var m = 1;
 export m;
@@ -104,11 +152,9 @@ export m;
 ```javascript
 // 写法一
 export var m = 1;
-
 // 写法二
 var m = 1;
 export {m};   //这里相当export {m:m}
-
 // 写法三
 var n = 1;
 export {n as m};
@@ -136,13 +182,10 @@ setTimeout(() => foo = 'baz', 500);
 ```
 function foo() {
   export default 'bar' // SyntaxError
-}
 foo()
 ```
 
 上面代码中，`export`语句放在函数之中，结果报错。
-
-
 
 ## import
 
@@ -173,17 +216,14 @@ import {myMethod} from 'util';
 ```
 // 报错
 import { 'f' + 'oo' } from 'my_module';
-
 // 报错
 let module = 'my_module';
 import { foo } from module;
-
 // 报错
 if (x === 1) {
   import { foo } from 'module1';
 } else {
   import { foo } from 'module2';
-}
 ```
 
 ### 只执行加载模块
@@ -212,7 +252,6 @@ import 'lodash';
 ```javascript
 import { foo } from 'my_module';
 import { bar } from 'my_module';
-
 // 等同于
 import { foo, bar } from 'my_module';
 ```
@@ -225,7 +264,6 @@ import { foo, bar } from 'my_module';
 
 ```javascript
 import { area, circumference } from './circle';
-
 console.log('圆面积：' + area(4));
 console.log('圆周长：' + circumference(14));
 ```
@@ -234,7 +272,6 @@ console.log('圆周长：' + circumference(14));
 
 ```javascript
 import * as circle from './circle';
-
 console.log('圆面积：' + circle.area(4));
 console.log('圆周长：' + circle.circumference(14));
 ```
@@ -243,7 +280,6 @@ console.log('圆周长：' + circle.circumference(14));
 
 ```javascript
 import * as circle from './circle';
-
 // 下面两行都是不允许的
 circle.foo = 'hello';
 circle.area = function () {};
@@ -259,7 +295,6 @@ circle.area = function () {};
 // export-default.js
 export default function () {
   console.log('foo');
-}
 ```
 
 上面代码是一个模块文件`export-default.js`，它的默认输出是一个函数。
@@ -278,14 +313,9 @@ customName(); // 'foo'
 // export-default.js
 export default function foo() {
   console.log('foo');
-}
-
 // 或者写成
-
 function foo() {
   console.log('foo');
-}
-
 export default foo;
 ```
 
@@ -306,12 +336,8 @@ import _, { each } from 'lodash';
 ```javascript
 export default function (obj) {
   // ···
-}
-
 export function each(obj, iterator, context) {
   // ···
-}
-
 export { each as forEach };
 ```
 
@@ -325,11 +351,9 @@ export { each as forEach };
 // modules.js
 function add(x, y) {
   return x * y;
-}
 export {add as default};
 // 等同于
 // export default add;
-
 // app.js
 import { default as xxx } from 'modules';
 // 等同于
@@ -343,11 +367,9 @@ import { default as xxx } from 'modules';
 ```javascript
 // 正确
 export var a = 1;
-
 // 正确
 var a = 1;
 export default a;
-
 // 错误
 export default var a = 1;
 ```
@@ -359,7 +381,6 @@ export default var a = 1;
 ```javascript
 // 正确
 export default 42;
-
 // 报错
 export 42;
 ```
@@ -373,7 +394,6 @@ export 42;
 ```javascript
 // MyClass.js
 export default class { ... }
-
 // main.js
 import MyClass from 'MyClass';
 let o = new MyClass();
@@ -387,8 +407,6 @@ let o = new MyClass();
 import _ from 'lodash';
 ```
 
-
-
 ## export 和 import 结合
 
 ### export ... from
@@ -397,7 +415,6 @@ import _ from 'lodash';
 
 ```javascript
 export { foo, bar } from 'my_module';
-
 // 等同于
 import { foo, bar } from 'my_module';
 export { foo, bar };
@@ -410,7 +427,6 @@ export { foo, bar };
 ```javascript
 // 接口改名
 export { foo as myFoo } from 'my_module';
-
 // 整体输出
 export * from 'my_module';
 ```
@@ -427,7 +443,6 @@ export { default } from 'foo';
 
 ```javascript
 export { es6 as default } from './someModule';
-
 // 等同于
 import { es6 } from './someModule';
 export default es6;
@@ -440,8 +455,6 @@ export { default as es6 } from './someModule';
 ```
 
 ### 未解决的方法
-
-
 
 下面三种`import`语句，没有对应的复合写法。
 
@@ -459,8 +472,6 @@ export someIdentifier from "someModule";
 export someIdentifier, { namedIdentifier } from "someModule";
 ```
 
-
-
 ## 模块继承
 
 ### export * from ...
@@ -469,19 +480,16 @@ export someIdentifier, { namedIdentifier } from "someModule";
 
 ```javascript
 // circleplus.js
-
 export * from 'circle';    // 先输出父模块所有的方法
 export var e = 2.71828182846; // 添加自己的方法
 export default function(x) {
   return Math.exp(x);
-}
 ```
 
 注意，`export *`命令会忽略`circle`模块的`default`方法。然后，上面代码又输出了自定义的`e`变量和默认方法。这时，也可以将`circle`的属性或方法，改名后再输出。
 
 ```javascript
 // circleplus.js
-
 export { area as circleArea } from 'circle';
 ```
 
@@ -491,15 +499,12 @@ export { area as circleArea } from 'circle';
 
 ```javascript
 // main.js
-
 import * as math from 'circleplus';
 import exp from 'circleplus';
 console.log(exp(math.e));
 ```
 
 上面代码中的`import exp`表示，将`circleplus`模块的默认方法加载为`exp`方法。
-
-
 
 ## 跨模块常量
 
@@ -510,12 +515,10 @@ console.log(exp(math.e));
 export const A = 1;
 export const B = 3;
 export const C = 4;
-
 // test1.js 模块
 import * as constants from './constants';
 console.log(constants.A); // 1
 console.log(constants.B); // 3
-
 // test2.js 模块
 import {A, B} from './constants';
 console.log(A); // 1
@@ -533,7 +536,6 @@ export const db = {
   admin_username: 'admin',
   admin_password: 'admin password'
 };
-
 // constants/user.js
 export const users = ['root', 'admin', 'staff', 'ceo', 'chief', 'moderator'];
 ```
@@ -553,8 +555,6 @@ export {users} from './users';
 import {db, users} from './constants';
 ```
 
-
-
 ## import 无法实现动态加载
 
 前面介绍过，`import`命令会被 JavaScript 引擎静态分析，先于模块内的其他模块执行（叫做”连接“更合适）。所以，下面的代码会报错。
@@ -563,7 +563,6 @@ import {db, users} from './constants';
 // 报错
 if (x === 2) {
   import MyModual from './myModual';
-}
 ```
 
 这样的设计，固然有利于编译器提高效率，**但也导致无法在运行时加载模块**。从语法上，条件加载就不可能实现。如果`import`命令要取代 Node 的`require`方法，这就形成了一个障碍。因为`require`是运行时加载模块，`import`命令无法取代`require`的动态加载功能。
@@ -589,7 +588,6 @@ import(specifier)
 
 ```javascript
 const main = document.querySelector('main');
-
 import(`./section-modules/${someVariable}.js`)
   .then(module => {
     module.loadPageInto(main);
@@ -634,7 +632,6 @@ if (condition) {
   import('moduleA').then(...);
 } else {
   import('moduleB').then(...);
-}
 ```
 
 上面代码中，如果满足条件，就加载模块 A，否则加载模块 B。
@@ -706,7 +703,6 @@ async function main() {
       import('./module2.js'),
       import('./module3.js'),
     ]);
-}
 main();
 ```
 

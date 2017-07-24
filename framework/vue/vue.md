@@ -1,7 +1,73 @@
 ## 目录
 ---
+- [目录](#目录)
+- [插值](#插值)
+  - [一次插值](#一次插值)
+  - [属性](#属性)
+- [vue生命周期钩子](#vue生命周期钩子)
+- [计算属性](#计算属性)
+  - [Computed 属性 vs Watched 属性](#Computed-属性-vs-Watched-属性)
+- [计算setter](#计算setter)
+  - [观察 Watchers](#观察-Watchers)
+- [class和style](#class和style)
+  - [对象或数组](#对象或数组)
+  - [与普通class属性共存](#与普通class属性共存)
+  - [表达式](#表达式)
+  - [绑定计算属性（重要）](#绑定计算属性重要)
+- [绑定内联样式](#绑定内联样式)
+  - [数组语法](#数组语法)
+  - [自动添加前缀](#自动添加前缀)
+- [v-if](#v-if)
+  - [<template> 与 v-if](#<template>-与-v-if)
+  - [v-else](#v-else)
+  - [v-else-if 2.1.0](#v-else-if-210)
+  - [v-if  vs  v-show](#v-if--vs--v-show)
+  - [key](#key)
+- [v-for](#v-for)
+  - [in 对象](#in-对象)
+  - [对象属性变更](#对象属性变更)
+  - [对父作用域的完全访问权限](#对父作用域的完全访问权限)
+  - [整数迭代](#整数迭代)
+- [v-for with v-if](#v-for-with-v-if)
+  - [显示过滤/排序结果](#显示过滤/排序结果)
+- [事件](#事件)
+  - [加括号，参数](#加括号，参数)
+  - [事件修饰符](#事件修饰符)
+  - [按键修饰符](#按键修饰符)
+- [按键修饰符](#按键修饰符)
+- [组件](#组件)
+  - [局部注册](#局部注册)
+  - [DOM 模版解析说明](#DOM-模版解析说明)
+  - [data必须是函数](#data必须是函数)
+  - [数据模型](#数据模型)
+  - [传递数据（父传子）](#传递数据父传子)
+    - [html中短横线隔开](#html中短横线隔开)
+    - [动态 Prop](#动态-Prop)
+    - [字面量语法 vs 动态语法](#字面量语法-vs-动态语法)
+    - [单向数据流（不要在子组件内部改变prop）](#单向数据流不要在子组件内部改变prop)
+    - [prop验证](#prop验证)
+  - [自定义事件（子传父）](#自定义事件子传父)
+    - [给组件绑定原生事件](#给组件绑定原生事件)
+    - [使用自定义事件的表单输入组件](#使用自定义事件的表单输入组件)
+  - [非父子组件通信](#非父子组件通信)
+  - [内容分发](#内容分发)
+    - [具名 Slot](#具名-Slot)
+  - [动态组件](#动态组件)
+    - [keep-alive](#keep-alive)
+  - [字符串模板](#字符串模板)
+  - [对低开销的静态组件使用 v-once](#对低开销的静态组件使用-v-once)
 - [遇到的问题](#遇到的问题)
   - [异步更新队列](#异步更新队列)
+---
+
+## 目录
+
+---
+
+- [遇到的问题](#遇到的问题)
+
+  - [异步更新队列](#异步更新队列)
+
 ---
 
 ## 插值
@@ -18,8 +84,6 @@
 
 **注意：**你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容插值。
 
-
-
 ### 一次插值
 
 通过使用 [v-once 指令](https://cn.vuejs.org/v2/api/#v-once)，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上所有的数据绑定：
@@ -27,8 +91,6 @@
 ```html
 <span v-once>This will never change: {{ msg }}</span>
 ```
-
-
 
 ### 属性
 
@@ -65,10 +127,6 @@ var vm = new Vue({
 
 ![Lifecycle](https://cn.vuejs.org/images/lifecycle.png)
 
-
-
-
-
 ## 计算属性
 
 计算属性就是一个专门用来对某些属性做操作的一种属性，它就是一个**返回一个值的方法**。
@@ -98,8 +156,6 @@ var vm = new Vue({
 
 你可以像绑定普通属性一样在模板中绑定计算属性。 Vue 知道 `vm.reversedMessage` 依赖于 `vm.message` ，因此当 `vm.message` 发生改变时，所有依赖于 `vm.reversedMessage` 的绑定**也会更新**。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 是没有副作用，这使得它易于测试和推理。
 
-
-
 用method可以实现类似computed一样的效果，**但是computed会缓存**，如果对应的计算属性没改变，那么对应的计算的属性也不会变。相比而言，只要发生重新渲染，method 调用**总会**执行该函数。
 
 ```javascript
@@ -109,12 +165,7 @@ methods: {
   reversedMessage: function () {
     return this.message.split('').reverse().join('')
   }
-}
 ```
-
-
-
-
 
 ### Computed 属性 vs Watched 属性
 
@@ -162,8 +213,6 @@ var vm = new Vue({
 
 好得多了，不是吗？
 
-
-
 ## 计算setter
 
 计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：
@@ -183,21 +232,16 @@ computed: {
       this.lastName = names[names.length - 1]
     }
   }
-}
 // ...
 ```
 
 现在在运行 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也相应地会被更新。
-
-
 
 ### 观察 Watchers
 
 虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher 。这是为什么 Vue 提供一个更通用的方法通过 `watch` 选项，来响应数据的变化。**当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的**。
 
 使用 `watch` 选项允许我们执行异步操作（访问一个 API），**限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态**。这是计算属性无法做到的。
-
-
 
 ## class和style
 
@@ -213,7 +257,6 @@ computed: {
 ```javascript
 data: {
   class1: 'class-1'
-}
 ```
 
 ### 对象或数组
@@ -250,8 +293,6 @@ data: {
 <div v-bind:class="[isActive ? activeClass : '', errorClass]">
 ```
 
-
-
 ### 绑定计算属性（重要）
 
 渲染的结果和上面一样。我们也可以在这里绑定返回对象的[计算属性](https://cn.vuejs.org/v2/guide/computed.html)。**这是一个常用且强大的模式**：
@@ -260,7 +301,6 @@ data: {
 
 ```
 <div v-bind:class="classObject"></div>
-
 data: {
   isActive: true,
   error: null
@@ -272,10 +312,7 @@ computed: {
       'text-danger': this.error && this.error.type === 'fatal',
     }
   }
-}
 ```
-
-
 
 ## 绑定内联样式
 
@@ -291,7 +328,6 @@ computed: {
 data: {
   activeColor: 'red',
   fontSize: 30
-}
 ```
 
 直接绑定到一个样式对象通常更好，让模板更清晰：
@@ -306,7 +342,6 @@ data: {
     color: 'red',
     fontSize: '13px'
   }
-}
 ```
 
 同样的，**对象语法常常结合返回对象的计算属性使用**。
@@ -322,8 +357,6 @@ data: {
 ### 自动添加前缀
 
 当 `v-bind:style` 使用需要特定前缀的 CSS 属性时，如 `transform` ，Vue.js 会自动侦测并添加相应的前缀。
-
-
 
 ## v-if
 
@@ -352,8 +385,6 @@ data: {
 </template>
 ```
 
-
-
 ### v-else
 
 `v-else` 元素必须紧跟在 `v-if` 或者 `v-else-if` 元素的后面——否则它将不会被识别。
@@ -379,8 +410,6 @@ data: {
 
 类似于 `v-else`，`v-else-if` 必须紧跟在 `v-if` 或者 `v-else-if` 元素之后。
 
-
-
 ### v-if  vs  v-show
 
 - `v-if` 是“真正的”条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。
@@ -392,8 +421,6 @@ data: {
 相比之下， `v-show` 就简单得多——不管初始条件是什么，元素总是会被渲染，带有 `v-show` 的元素始终会被渲染并保留在 DOM 中，并且只是简单地基于 CSS 进行切换（`display`）。
 
 一般来说， `v-if` 有**更高的切换开销**，而 `v-show` 有**更高的初始渲染开销**。因此，如果需要非常频繁地切换，则使用 `v-show` 较好；如果在运行时条件不太可能改变，则使用 `v-if` 较好。
-
-
 
 ### key
 
@@ -413,8 +440,6 @@ data: {
 ```
 
 那么在上面的代码中切换 `loginType` 将不会清除用户已经输入的内容。因为两个模版使用了相同的元素，`<input>` 不会被替换掉——仅仅是替换了它的的 `placeholder`。
-
-
 
 这样也不总是符合实际需求，所以 Vue 为你提供了一种方式来声明“这两个元素是完全独立的——不要复用它们”。只需添加一个具有唯一值的 `key` 属性即可：
 
@@ -446,8 +471,6 @@ data: {
 ```
 
 上面的in可以用of来代替，因为它是最接近 JavaScript 迭代器的语法
-
-
 
 ### in 对象
 
@@ -494,7 +517,6 @@ this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
     {{ parentMessage }} - {{ index }} - {{ item.message }}
   </li>
 </ul>
-
 var example2 = new Vue({
   el: '#example-2',
   data: {
@@ -510,6 +532,7 @@ var example2 = new Vue({
 结果：
 
 - Parent - 0 - Foo
+
 - Parent - 1 - Bar
 
 ### 整数迭代
@@ -525,8 +548,6 @@ var example2 = new Vue({
 结果：
 
 1 2 3 4 5 6 7 8 9 10
-
-
 
 ## v-for with v-if
 
@@ -550,8 +571,6 @@ var example2 = new Vue({
 </ul>
 ```
 
-
-
 ### 显示过滤/排序结果
 
 有时，我们想要显示一个数组的过滤或排序副本，而不实际改变或重置原始数据。在这种情况下，可以创建返回过滤或排序数组的计算属性。
@@ -569,10 +588,7 @@ computed: {
       return number % 2 === 0
     })
   }
-}
 ```
-
-
 
 ## 事件
 
@@ -585,7 +601,6 @@ computed: {
   <!-- `greet` 是在下面定义的方法名 -->
   <button v-on:click="greet">Greet</button>
 </div>
-
 var example2 = new Vue({
   el: '#example-2',
   data: {
@@ -618,10 +633,7 @@ methods: {
     if (event) event.preventDefault()
     alert(message)
   }
-}
 ```
-
-
 
 ### 事件修饰符
 
@@ -630,27 +642,26 @@ methods: {
 为了解决这个问题， Vue.js 为 `v-on` 提供了 **事件修饰符**。通过由点(.)表示的指令后缀来调用修饰符。
 
 - `.stop`
+
 - `.prevent`
+
 - `.capture`
+
 - `.self`
+
 - `.once`(2.1.4)
 
 ```
 <!-- 阻止单击事件冒泡 -->
 <a v-on:click.stop="doThis"></a>
-
 <!-- 提交事件不再重载页面 -->
 <form v-on:submit.prevent="onSubmit"></form>
-
 <!-- 修饰符可以串联  -->
 <a v-on:click.stop.prevent="doThat"></a>
-
 <!-- 只有修饰符 -->
 <form v-on:submit.prevent></form>
-
 <!-- 添加事件侦听器时使用事件捕获模式 -->
 <div v-on:click.capture="doThis">...</div>
-
 <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
 <div v-on:click.self="doThat">...</div>
 ```
@@ -661,10 +672,6 @@ methods: {
 ```
 
 不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的[组件事件](https://cn.vuejs.org/v2/guide/components.html#Using-v-on-with-Custom-Events)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
-
-
-
-
 
 ### 按键修饰符
 
@@ -680,7 +687,6 @@ methods: {
 ```
 <!-- 同上 -->
 <input v-on:keyup.enter="submit">
-
 <!-- 缩写语法 -->
 <input @keyup.enter="submit">
 ```
@@ -688,13 +694,21 @@ methods: {
 全部的按键别名：
 
 - `.enter`
+
 - `.tab`
+
 - `.delete` (捕获 “删除” 和 “退格” 键)
+
 - `.esc`
+
 - `.space`
+
 - `.up`
+
 - `.down`
+
 - `.left`
+
 - `.right`
 
 可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](https://cn.vuejs.org/v2/api/#keyCodes)：
@@ -711,22 +725,23 @@ Vue.config.keyCodes.f1 = 112
 可以用如下修饰符开启鼠标或键盘事件监听，使在按键按下时发生响应。
 
 - `.ctrl`
+
 - `.alt`
+
 - `.shift`
+
 - `.meta`
 
 > 注意：在Mac系统键盘上，meta对应命令键 (⌘)。在Windows系统键盘meta对应windows徽标键(⊞)。在Sun操作系统键盘上，meta对应实心宝石键 (◆)。在其他特定键盘上，尤其在MIT和Lisp键盘及其后续，比如Knight键盘，space-cadet键盘，meta被标记为“META”。在Symbolics键盘上，meta被标记为“META” 或者 “Meta”。
+
 > 例如:
 
 ```
 <!-- Alt + C -->
 <input @keyup.alt.67="clear">
-
 <!-- Ctrl + Click -->
 <div @click.ctrl="doSomething">Do something</div>
 ```
-
-
 
 ## 组件
 
@@ -742,8 +757,6 @@ Vue.component('my-component', {
 })
 ```
 
-
-
 ### 局部注册
 
 通过添加`components`属性（注意有s），可以使组件仅在另一个实例/组件的作用域中可用：
@@ -752,8 +765,6 @@ Vue.component('my-component', {
 var Child = {
    template: '<div>{{msg}}</div>'，
    prop:['msg']  //传递数据
-}
-
 new Vue({
   // ...
   components: {
@@ -764,8 +775,6 @@ new Vue({
 ```
 
 这种封装也适用于其它可注册的 Vue 功能，如指令。
-
-
 
 ### DOM 模版解析说明
 
@@ -790,12 +799,12 @@ new Vue({
 **应当注意，如果您使用来自以下来源之一的字符串模板，这些限制将不适用：**
 
 - `<script type="text/x-template">`
+
 - JavaScript内联模版字符串
+
 - `.vue` 组件
 
 因此，有必要的话请使用字符串模版。
-
-
 
 ### data必须是函数
 
@@ -819,7 +828,6 @@ Vue.component('my-component', {
   <simple-counter></simple-counter>
 </div>
 var data = { counter: 0 }
-
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
   // 技术上 data 的确是一个函数了，因此 Vue 不会警告，
@@ -828,7 +836,6 @@ Vue.component('simple-counter', {
     return data
   }
 })
-
 new Vue({
   el: '#example-2'
 })
@@ -841,14 +848,11 @@ data: function () {
   return {
     counter: 0
   }
-}
 ```
 
 ### 数据模型
 
 ![props down, events up](https://cn.vuejs.org/images/props-events.png)在 Vue.js 中，父子组件的关系可以总结为 **props down, events up** 。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。
-
-
 
 ### 传递数据（父传子）
 
@@ -886,7 +890,6 @@ Vue.component('child', {
   props: ['myMessage'],
   template: '<span>{{ myMessage }}</span>'
 })
-
 <!-- kebab-case in HTML -->
 <child my-message="hello!"></child>
 ```
@@ -911,8 +914,6 @@ Vue.component('child', {
 <child :my-message="parentMsg"></child>
 ```
 
-
-
 #### 字面量语法 vs 动态语法
 
 初学者常犯的一个错误是使用字面量语法传递数值：
@@ -929,8 +930,6 @@ Vue.component('child', {
 <comp v-bind:some-prop="1"></comp>
 ```
 
-
-
 #### 单向数据流（不要在子组件内部改变prop）
 
 prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。
@@ -940,6 +939,7 @@ prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
 为什么我们会有修改prop中数据的冲动呢？通常是这两种原因：
 
 1. prop 作为初始值传入后，子组件想把它当作局部数据来用；
+
 2. prop 作为初始值传入，由子组件处理成其它数据输出。
 
 对这两种原因，正确的应对方式是：
@@ -1010,8 +1010,6 @@ Vue.component('example', {
 
 父亲通过v-on:myevent来绑定子组件抛出的事件，孩子用this.$emit('myevent')抛出事件
 
-
-
 ```javascript
 Vue.component('button-counter', {
   template: '<button v-on:click="increment">{{ counter }}</button>',
@@ -1071,6 +1069,7 @@ new Vue({
 所以要让组件的 `v-model` 生效，它必须：
 
 - 接受一个 `value` 属性
+
 - 在有新的 value 时触发 `input` 事件
 
 我们来看一个非常简单的货币输入的自定义控件：
@@ -1203,10 +1202,8 @@ bus.$on('id-selected', function (id) {
 ```html
 <app-layout>
   <h1 slot="header">这里可能是一个页面标题</h1>
-
   <p>主要内容的一个段落。</p>
   <p>另一个主要段落。</p>
-
   <p slot="footer">这里有一些联系信息</p>
 </app-layout>
 ```
@@ -1259,8 +1256,6 @@ var vm = new Vue({
 ```javascript
 var Home = {
   template: '<p>Welcome home!</p>'
-}
-
 var vm = new Vue({
   el: '#example',
   data: {
@@ -1283,8 +1278,6 @@ var vm = new Vue({
 
 在[API 参考](https://cn.vuejs.org/v2/api/#keep-alive)查看更多 `<keep-alive>` 的细节。
 
-
-
 ### 字符串模板
 
 当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：
@@ -1304,8 +1297,6 @@ var vm = new Vue({
 
 当然，这只在字符串模版中有效。因为自闭的自定义元素是无效的 HTML ，浏览器原生的解析器也无法识别它。
 
-
-
 ### 对低开销的静态组件使用 v-once
 
 尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时，可以考虑使用 `v-once` 将渲染结果缓存起来，就像这样：
@@ -1320,8 +1311,6 @@ Vue.component('terms-of-service', {
   '
 })
 ```
-
-
 
 ## 遇到的问题
 
@@ -1405,5 +1394,4 @@ Vue.component('example', {
     }
   }
 ```
-
 

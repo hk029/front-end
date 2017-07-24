@@ -1,3 +1,24 @@
+## 目录
+---
+- [promise](#promise)
+    - [特点](#特点)
+    - [缺点](#缺点)
+  - [promise基本写法](#promise基本写法)
+  - [then](#then)
+    - [链式调用then](#链式调用then)
+  - [catch](#catch)
+  - [all](#all)
+    - [例子](#例子)
+  - [race](#race)
+    - [超时出错](#超时出错)
+  - [resolve](#resolve)
+  - [done()](#done)
+  - [finally()](#finally)
+  - [promise实现Ajax](#promise实现Ajax)
+- [遍历器](#遍历器)
+  - [模拟实现](#模拟实现)
+---
+
 # promise
 
 ## 介绍
@@ -20,36 +41,28 @@
 
 如果某些事件不断地反复发生，一般来说，使用 stream 模式是比部署`Promise`更好的选择。
 
-
-
 ## promise基本写法
 
 ```javascript
 var promise = new Promise(function(resolve, reject) {
   // ... some code
-
   if (/* 异步操作成功 */){
     resolve(value);
   } else {
     reject(error);
   }
 });
-
 //需要传参数的
 var promise = function(parm){
   return new Promise(function(resolve, reject) {
     // ... some code using parm
-	
     if (/* 异步操作成功 */){
       resolve(value);
     } else {
       reject(error);
     }
   });
-}
 ```
-
-
 
 ## then
 
@@ -110,8 +123,6 @@ process.on('unhandledRejection', function (err, p) {
 
 需要注意的是，`catch`方法返回的还是一个 Promise 对象，因此后面还可以接着调用`then`方法。`catch`方法之中，还能再抛出错误（如果后面没有别的`catch`方法了，导致这个错误不会被捕获，也不会传递到外层）
 
-
-
 ## all
 
 Promise.all([])的功能就是让多个promise对象打包，全部执行完再执行接下来的方法。它可以将多个Promise实例，包装成一个新的Promise实例。
@@ -123,6 +134,7 @@ var p = Promise([p1,p2,p3]);
 它的状态变化：
 
 - 只有`p1`、`p2`、`p3`的状态都变成`fulfilled`，`p`的状态才会变成`fulfilled`，此时`p1`、`p2`、`p3`的返回值**组成一个数组**，传递给`p`的回调函数。
+
 - 只要`p1`、`p2`、`p3`之中有一个被`rejected`，`p`的状态就变成`rejected`，此时第一个被`reject`的实例的返回值，会传递给`p`的回调函数
 
 ### 例子
@@ -134,7 +146,6 @@ var p = Promise([p1,p2,p3]);
 var promises = [2, 3, 5, 7, 11, 13].map(function (id) {
   return getJSON("/post/" + id + ".json");
 });
-
 Promise.all(promises).then(function (posts) {
   // ...
 }).catch(function(reason){
@@ -205,13 +216,9 @@ let thenable = {
 
 `Promise.resolve`方法会将这个对象转为Promise对象，然后就立即执行`thenable`对象的`then`方法。
 
-
-
 **（3）参数不是具有then方法的对象，或根本就不是对象**
 
 如果参数是一个原始值，或者是一个不具有`then`方法的对象，则`Promise.resolve`方法返回一个新的Promise对象，状态为`Resolved`。`Promise.resolve`方法的参数，会同时传给回调函数。
-
-
 
 **（4）不带有任何参数**
 
@@ -234,13 +241,10 @@ p.then(function () {
 setTimeout(function () {
   console.log('three');
 }, 0);
-
 Promise.resolve().then(function () {
   console.log('two');
 });
-
 console.log('one');
-
 // one
 // two
 // three
@@ -324,18 +328,12 @@ var Ajax = function(url,type='json'){
             }
         };
     });
-}
-
 Ajax("/posts.json").then(function(json) {
   console.log('Contents: ' + json);
 }, function(error) {
   console.error('出错了', error);
 });
 ```
-
-
-
-
 
 # 遍历器
 
@@ -351,19 +349,15 @@ Iterator的遍历过程是这样的。
 
 （4）不断调用指针对象的`next`方法，直到它指向数据结构的结束位置。
 
-
-
 ## 模拟实现
 
 下面是一个模拟`next`方法返回值的例子。
 
 ```javascript
 var it = makeIterator(['a', 'b']);
-
 it.next() // { value: "a", done: false }
 it.next() // { value: "b", done: false }
 it.next() // { value: undefined, done: true }
-
 function makeIterator(array) {
   var nextIndex = 0;
   return {
@@ -373,10 +367,7 @@ function makeIterator(array) {
         {value: undefined, done: true};
     }
   };
-}
-
 //对于遍历器对象来说，done: false和value: undefined属性都是可以省略的，因此上面的makeIterator函数可以简写成下面的形式。
-
 function makeIterator(array) {
   var nextIndex = 0;
   return {
@@ -386,6 +377,5 @@ function makeIterator(array) {
         {done: true};
     }
   };
-}
 ```
 
