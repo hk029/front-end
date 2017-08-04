@@ -4,6 +4,10 @@
 - [如何实现数组去重](#如何实现数组去重)
 - [如何实现深浅拷贝](#如何实现深浅拷贝)
 - [如何实现页面关闭通知后台](#如何实现页面关闭通知后台)
+- [如何删除数组中的多个特定元素（必须用splice）](#如何删除数组中的多个特定元素必须用splice)
+- [求数组中的最大，最小值](#求数组中的最大，最小值)
+- [如何扁平化数组](#如何扁平化数组)
+- [如何实现(2).plus(3).minus(1) //4](#如何实现2plus3minus1-//4)
 ---
 
 ## 如何实现sum(1,2),sum(1)(2)
@@ -151,10 +155,10 @@ alert("你正在刷新页面");
 
 ![your text](http://o7bk1ffzo.bkt.clouddn.com/1500819726098)
 
-
 ## 如何删除数组中的多个特定元素（必须用splice）
 
 关键是要注意splice之后，arr的长度会变化
+
 ```js
 var arr = [1,2,4,4,6,7]
 var target = 4;
@@ -164,36 +168,35 @@ for (var i = 0;arr[i];){  //如果i超过length，arr[i] = undefined, 或者用i
   }else {
     i++;
   }
-}
-
 ```
 
 ## 求数组中的最大，最小值
+
 可以使用reduce或者直接用Math.max
+
 ```js
 var arr = [1,2,4,4,6,7]
 //用reduce
 arr.reduce(function (a, b) {
   return a > b?a:b;
-})
 //直接使用Math.max([value1[, value2[, ...]]])
 Math.max.apply(null,arr);
 //扩展运算符
 Math.max(...arr);
-
 ```
 
 ## 如何扁平化数组
-数组的toString很神奇，可以扁平化数组
-```js
 
+数组的toString很神奇，可以扁平化数组
+
+```js
 var arr = [1,2,[3,[4]]];
 arr.toString() // 1,2,3,4
 var newArr = arr.toString().split(',').map( i => parseInt(i) );
 ```
 
-
 我想了一个很另类的方法，用正则
+
 ```js
 var arr = [1,2,[3,[4]]];
 var str = '[' + JSON.stringify(arr).replace(/[\[|\]]/g,'') + ']'
@@ -201,7 +204,9 @@ var newArr = JSON.parse(str);
 ```
 
 ## 如何实现(2).plus(3).minus(1) //4
+
 (2).plus，其实是调用Number的plus方法，数字通过包装对象可以使用相应的方法，所以只用把Number的原型中加入相应的方法就行了
+
 ```js
 Number.prototype.plus = function(x){return this + x;}
 Number.prototype.minus = function(x){return this - x;}
