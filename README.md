@@ -109,6 +109,8 @@
 
 - [如何实现sum(1,2),sum(1)(2)](about_js/program.md/#如何实现sum1,2,sum12) +170722
 
+- [如何删除数组中的多个特定元素（必须用splice）]
+
 - [实现一个lazyman](about_js/lazyman.md) +170715 
 
 ### 常用操作
@@ -130,6 +132,7 @@
 ## css 相关
 
 - [盒模型](/about_css/box.md) +170726
+
 
 - [marigin塌陷](/about_css/collapsedmargin.md) +170726
 
@@ -168,6 +171,8 @@
 - [head](/about_html/head.md)
 
 - [语义化标签](/about_html/semantic.md)
+
+- [替换元素](/about_html/replaced.md) +170726
 
 - [常用标签](/about_html/tags.md) +170715 
 
@@ -251,3 +256,4 @@
 
 > 这里可以直接接网址链接，当然还是希望大家发现有新的面试题，但是上面没出现的，补充在上面
 
+[一道经典的js面试题](/interview/p1.md)

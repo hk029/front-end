@@ -26,12 +26,13 @@ class nodeInfo {
 
   toString(){
     return JSON.stringify(this);
-
   }
 }
 
-var traverse = function (node) {
 
+
+
+var traverse = function (node) {
   var children = node.children();
-  
+  return 
 }

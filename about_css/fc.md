@@ -39,6 +39,8 @@ display:block, list-item, table 的元素，会生成 block-level box。
 
 **块盒 要求 比块级盒更加严格**
 
+![](https://developer.mozilla.org/@api/deki/files/5995/=venn_blocks.png)
+
 ### *匿名块盒
 
 #### 块级盒包含内联和块级盒
