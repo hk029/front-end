@@ -148,10 +148,12 @@ var user = {
     clickHandler : function(){
         console.log(this.name);
     }
+}
 button.onclick = user.clickHandler; //undefined，无法读取对象的name属性
 button.onclick = user.clickHandler.bind(user); 
 button.onclick = function () {
-  user.clickHandler.call(user); 
+  user.clickHandler(); 
+}
 ```
 
 #### 2. 闭包中的this
@@ -195,6 +197,7 @@ user.clickHandler2(); // What is "this" referring to? [object user]
 var arr = Array.prototype.slice.call(arguments,0)  //之后就可以使用数组方法了
 [].forEach(arguments, function (element) {
   console.log(element)
+}
 ```
 
 类数组对象的实现原理
