@@ -75,19 +75,23 @@ Access-Control-Allow-Credentials:true
 跨文档消息（cross-document messaging），允许来自一个文档的脚本可以传递文本消息到另一个文档里的脚本，而不管脚本的来源是否不同。调用window对象的`postMessage()`，方法，可以异步传递消息，利用`onmessage`事件处理函数来处理它。采用`域判断`来确定信任源。
 
 **注意：** 貌似只对使用iframe或者window.open打开的窗口有效。直接用window.postMessage到别的域无效
-
+postMessage第二个参数可以为'*' ,这样可以不管对方的网址是否对应。否则发送目的要对应的网址。
+event对象中比较重要的就是：`event.data`是数据，`event.orgin`是来源地址,
+`window.parent.postMessage('msg from child','*') `可以从frame里向父亲发信息
 ```javascript
 //window.open方式
 var pop = window.open('http://www.example.com/')
 pop.postMessage('hello','http://www.example.com')
 //文档A发送消息给文档B
 chatFrame.contentWindow.postMessage('hello','http://www.example.com/')
+
 //文档B监听message事件
 window.addEventListener('message',messageHandler,true);
 function messageHandler(e){
     if(checkWhiteList(e.origin)){
         //处理消息
         processMessage(e.data);
+        
     }else{
         //忽略来自未知源的消息
     }
