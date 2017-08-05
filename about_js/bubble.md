@@ -60,7 +60,11 @@ IE 6.0:
 但是并不是所有的的事件都会触发冒泡，以下事件不冒泡：`blur`、`focus`、`load`、`unload`
 
 要实现`blur`和`focus`的代理：
-`blur`和`focus`在ie下可以通过focusin和blurout事件（支持冒泡）
+`blur`和`focus`在ie下可以通过focusin和focusout事件（支持冒泡）
+```js
+el.onfocusin = focusHandler;
+el.onfocusout = blurHandler;
+```
 其他的情况下，可以使用捕获实现代理
 ```js
 el.addEventListener('focus', focusHandler, true);
