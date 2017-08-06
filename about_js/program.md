@@ -8,6 +8,7 @@
 - [求数组中的最大，最小值](#求数组中的最大，最小值)
 - [如何扁平化数组](#如何扁平化数组)
 - [如何实现(2).plus(3).minus(1) //4](#如何实现2plus3minus1-//4)
+- [如何判断一个字符串是回文串](#如何判断一个字符串是回文串)
 ---
 
 ## 如何实现sum(1,2),sum(1)(2)
@@ -210,5 +211,13 @@ var newArr = JSON.parse(str);
 ```js
 Number.prototype.plus = function(x){return this + x;}
 Number.prototype.minus = function(x){return this - x;}
+```
+
+## 如何判断一个字符串是回文串
+
+```js
+function isPalindrome(str){
+  return str === str.split('').reverse().join('');
+}
 ```
 
