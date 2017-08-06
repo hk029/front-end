@@ -1,7 +1,7 @@
 ## 目录
 ---
+- [css hack基本概念](#css-hack基本概念)
 ---
-
 
 ## css hack基本概念
 
@@ -35,5 +35,4 @@
         * html .test{color:#090;}/*IE6 and earlier*/
         * +html .test{color:#ff0;}/*IE7*/
         ```
-
 

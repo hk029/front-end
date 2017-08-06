@@ -51,13 +51,9 @@
 
 - [cookie和session](/overall/cookie.md/#cookie和session) +170723
 
-- [generator](/overall/generator.md)
-
 - [iframe](/overall/iframe.md)
 
 - [通信](/overall/message.md)
-
-- [promise](/overall/promise.md)
 
 - [正则表达式](/overall/regex.md) +170717
 
@@ -145,7 +141,7 @@
 
 - [流模型](/about_css/flow.md) 
 
-- [hack](/about_css/hack.md)
+- [hack](/about_css/hack.md) +170806
 
 - [less](/about_css/less.md)
 
