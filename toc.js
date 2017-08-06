@@ -25,7 +25,7 @@ var genToc = function (file, flag) {
   var inCode = false;
   lines.forEach(line => {
     //判断
-    if (line.length > 2) {
+    if (line.length >= 1) {
       newData += line;
       if (line.match(/```/g)) {
         inCode = !inCode;

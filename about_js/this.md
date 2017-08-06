@@ -72,6 +72,7 @@ myObject.getValue = function () {
  };
  foo(); // 输出全局对象 window
  return this.value;
+}
 var getValue = myObject.getValue; 
 console.log(myObject.getValue()); // => myobject 
 console.log(getValue()); // => window
@@ -97,6 +98,7 @@ js 中，我们通过`new`关键词来调用构造函数，此时`this`会绑定
 ```js
 var SomeClass = function(){
  this.value = 100;
+}
 var myCreate = new SomeClass();
 console.log(myCreate.value); // 输出100
 ```
@@ -125,6 +127,7 @@ Function.prototype.bind = function (context) {
   return function () {
     self.apply(context,arguments);
   }
+}
 ```
 
 ```js
@@ -132,6 +135,7 @@ var myObject = {value: 100};
 //可以轻松实现借用方法（比如借用构造函数实现继承）
 var foo = function(){
  console.log(this);
+}
 foo(); // 全局变量 global
 foo.apply(myObject); // { value: 100 }
 foo.call(myObject); // { value: 100 }
@@ -153,10 +157,12 @@ var user = {
     clickHandler : function(){
         console.log(this.name);
     }
+}
 button.onclick = user.clickHandler; //undefined，无法读取对象的name属性
 button.onclick = user.clickHandler.bind(user); 
 button.onclick = function () {
   user.clickHandler(); 
+}
 ```
 
 #### 2. 闭包中的this
@@ -200,6 +206,7 @@ user.clickHandler2(); // What is "this" referring to? [object user]
 var arr = Array.prototype.slice.call(arguments,0)  //之后就可以使用数组方法了
 [].forEach(arguments, function (element) {
   console.log(element)
+}
 ```
 
 类数组对象的实现原理
