@@ -257,5 +257,7 @@
 
 > 这里可以直接接网址链接，当然还是希望大家发现有新的面试题，但是上面没出现的，补充在上面
 
-[一道经典的js面试题](/interview/p1.md)
+- [一道经典的js面试题](/interview/p1.md)
+
+- [windows.onload 和 $(document).ready()区别](/interview/p2.md)
 
