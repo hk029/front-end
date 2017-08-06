@@ -5,6 +5,7 @@
     - [函数有所属对象时：指向所属对象](#函数有所属对象时指向所属对象)
     - [(在全局)普通函数调用：指向全局对象](#在全局普通函数调用指向全局对象)
     - [构造器中的 this：指向新对象](#构造器中的-this指向新对象)
+    - [箭头函数this](#箭头函数this)
     - [apply 和 call 调用以及 bind 绑定：指向绑定的对象](#apply-和-call-调用以及-bind-绑定指向绑定的对象)
     - [this关键字的核心](#this关键字的核心)
     - [this使用技巧](#this使用技巧)
@@ -102,6 +103,10 @@ console.log(myCreate.value); // 输出100
 
 顺便说一句，在 js 中，构造函数、普通函数、对象方法、闭包，这四者没有明确界线。界线都在人的心中。
 
+### 箭头函数this
+
+详细请看[箭头函数](../es6/arrow.md)
+
 ### apply 和 call 调用以及 bind 绑定：指向绑定的对象
 
 - apply(作用域，参数数组)  ： 适合在函数内直接直接把arguments传入 
@@ -148,12 +153,10 @@ var user = {
     clickHandler : function(){
         console.log(this.name);
     }
-}
 button.onclick = user.clickHandler; //undefined，无法读取对象的name属性
 button.onclick = user.clickHandler.bind(user); 
 button.onclick = function () {
   user.clickHandler(); 
-}
 ```
 
 #### 2. 闭包中的this
@@ -197,7 +200,6 @@ user.clickHandler2(); // What is "this" referring to? [object user]
 var arr = Array.prototype.slice.call(arguments,0)  //之后就可以使用数组方法了
 [].forEach(arguments, function (element) {
   console.log(element)
-}
 ```
 
 类数组对象的实现原理

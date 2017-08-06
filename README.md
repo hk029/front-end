@@ -99,6 +99,8 @@
 
 - [事件委托](/about_js/delegation.md) +170723
 
+- [函数优化（防抖动和节流）](/about_js/optimize.md) + 170806
+
 - [polyfill](/about_js/polyfill.md)
 
 ### 常见编程考验

@@ -1,5 +1,6 @@
 ## 目录
 ---
+- [目录](#目录)
 - [html冒泡和事件捕获机制](#html冒泡和事件捕获机制)
 - [DOM事件流](#DOM事件流)
   - [冒泡顺序](#冒泡顺序)
@@ -9,6 +10,30 @@
   - [IE](#IE)
   - [兼容写法](#兼容写法)
 - [阻止冒泡应用](#阻止冒泡应用)
+---
+
+## 目录
+
+---
+
+- [html冒泡和事件捕获机制](#html冒泡和事件捕获机制)
+
+- [DOM事件流](#DOM事件流)
+
+  - [冒泡顺序](#冒泡顺序)
+
+  - [不触发冒泡的事件](#不触发冒泡的事件)
+
+- [target&currentTarget](#target&currentTarget)
+
+- [阻止冒泡](#阻止冒泡)
+
+  - [IE](#IE)
+
+  - [兼容写法](#兼容写法)
+
+- [阻止冒泡应用](#阻止冒泡应用)
+
 ---
 
 ## html冒泡和事件捕获机制
@@ -60,16 +85,21 @@ IE 6.0:
 但是并不是所有的的事件都会触发冒泡，以下事件不冒泡：`blur`、`focus`、`load`、`unload`
 
 要实现`blur`和`focus`的代理：
+
 `blur`和`focus`在ie下可以通过focusin和focusout事件（支持冒泡）
+
 ```js
 el.onfocusin = focusHandler;
 el.onfocusout = blurHandler;
 ```
+
 其他的情况下，可以使用捕获实现代理
+
 ```js
 el.addEventListener('focus', focusHandler, true);
 el.addEventListener('blur', blurHandler, true);
 ```
+
 ## target&currentTarget
 
 target在事件流的目标阶段；currentTarget在事件流的捕获，目标及冒泡阶段。只有当事件流处在目标阶段的时候，两个的指向才是一样的， 而当处于捕获和冒泡阶段的时候，target指向被单击的对象而currentTarget指向当前事件活动的对象（一般为父级）。
