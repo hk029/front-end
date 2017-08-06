@@ -1,20 +1,53 @@
 ## 目录
 ---
+- [目录](#目录)
 - [js优化](#js优化)
   - [防抖动](#防抖动)
+    - [underscore源码](#underscore源码)
+    - [简化版](#简化版)
   - [节流](#节流)
+    - [underscore源码](#underscore源码)
+    - [简化版](#简化版)
 - [参考文章](#参考文章)
 ---
 
+## 目录
+
+---
+
+- [js优化](#js优化)
+
+  - [防抖动](#防抖动)
+
+  - [节流](#节流)
+
+- [参考文章](#参考文章)
+
+---
+
+
+
 ## js优化
+
+
 
 在实际工程中间，会用到很多优化的技巧，其中比较重要的两个是去抖动和函数节流。这两个方法都是限制函数执行的方案。
 
+
+
 ### 防抖动
+
+
 
 函数防抖就是让某个函数在上一次执行后，满足等待某个时间内不再触发此函数后再执行，而在这个等待时间内再次触发此函数，等待时间会重新计算。
 
+
+
 防抖动大量运用在`联想搜索`里。当用户输入停止后再开始联想，而不是用户随便输入一点什么就开始发送请求，如果用户一下输入大量文字或英文，会在短时间内向后台发送大量请求是很没必要的。
+
+
+
+#### underscore源码
 
 ```js
 _.debounce = function(func, wait, immediate) {
@@ -50,9 +83,47 @@ _.debounce = function(func, wait, immediate) {
   };
 ```
 
+
+
+#### 简化版
+
+```js
+  var debounce = function ( fn, wait, immdediate) {
+    var timer = null,
+        pre = 0;
+    return function () {
+      var context = this;
+      var args = arguments;
+      var now = +new Date();
+      var left = now - pre - wait;
+      pre = now;
+      // 如果距离上一次函数调用已经超过了预计时间，或者此时没有设置timer
+      if ( left > 0 ){
+        fn.apply(context,args);
+        return ;
+      }
+      //每次进入函数，都重新计算过期时间
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        clearTimeout(timer);
+        timer = null;
+        fn.apply(context,args);
+        pre = +new Date();  //调用了函数也更新pre
+      },wait);
+    }
+  }
+
+```
+
 ### 节流
 
+
+
 每间隔某个时间去执行某函数，避免函数的过多执行，这个方式就叫函数节流。节流和防抖动最大的不同就是，节流保证一个时间段内至少会执行一次。可以想象成把水龙头拧小，它主要用于大量连续事件快速频繁触发的场景，比如：onscroll，onresize。
+
+
+
+#### underscore源码
 
 ```js
 _.throttle = function(func, wait, options) {
@@ -100,13 +171,58 @@ _.throttle = function(func, wait, options) {
   };
 ```
 
-精彩之处：按理来说remaining <= 0已经足够证明已经到达wait的时间间隔，但这里还考虑到假如客户端修改了系统时间则马上执行func函数.
+精彩之处：一般来说remaining <= 0已经足够证明已经到达wait的时间间隔，但这里还考虑到假如客户端修改了系统时间则马上执行func函数.
+
+
+
+#### 简化版
+
+
+
+自写简化版（来自javascript设计模式）
+
+```js
+var throttle = function ( fn, interval ) {
+    var timer,
+        first = true;
+    return function () {
+        var args = arguments,   // 重命名一下，防止迷糊
+            _me = this;
+        if ( first ) {      // 第一 次直接执行
+            fn.apply(_me , args);
+            return first = false;
+        }
+        if ( timer ){   // 如果上一次还没执行完，则直接返回
+            return false;
+        }
+        timer = setTimeout(function () {  
+            clearTimeout(timer);    // 时间结束后，先取消计时器，然后运行当前函数
+            timer = null;
+            fn.apply(_me, args);
+        }, interval || 500);
+    };
+};
+```
+
+
+
+
 
 ## 参考文章
 
+
+
 - ​[JS魔法堂：函数节流（throttle）与函数去抖（debounce）](http://www.cnblogs.com/fsjohnhuang/p/4147810.html)
+
+
 
 - [函数防抖与节流](https://segmentfault.com/a/1190000002764479)
 
+
+
 - [scroll优化之防抖与节流](https://segmentfault.com/a/1190000007676390)
+
+
+
+- 《Javascript设计模式与开发实践》
 
