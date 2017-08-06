@@ -185,6 +185,8 @@
 
 - 浏览器模式(解释清楚算加分项)
 
+- [安全](/security/xss.md) +170806
+
 ## ES6
 
 - [let&const](es6/let&const.md) +170715 
@@ -256,3 +258,4 @@
 - [windows.onload 和 $(document).ready()区别](/interview/p2.md)
 
 - [你常关注的网站](/interview/p3.md)
+
