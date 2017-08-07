@@ -31,6 +31,7 @@ function counter(){
     return function(){
         return i++;
     }
+}
 ```
 
 ### 防止全局变量污染
@@ -40,8 +41,10 @@ function counter(){
 var test2=222;
 function test(){
     alert(test2);
+}
 test(); //测试闭包：222
 )(); 
+test2 //undefined
 ```
 
 ### 在函数执行之前为要执行的函数提供具体参数
@@ -52,22 +55,44 @@ test(); //测试闭包：222
 // Ajax callbacks
 // event handler[el.onclick=func 、 el.attachEvent("onclick",func)]
 //无法传参的情况
+
 var parm=222
-function f1(){alert(111)
-function f2(obj){alert(obj)
+
+function f1(){alert(111)}
+
+function f2(obj){alert(obj)}
+
 setTimeout(f1,500);//正确,无参数
+
 var test1=f2(parm);//执行一次f2函数
+
 setTimeout(f2,500);//undefined，传参失败
+
 setTimeout(f2(parm),500);//参数无效，传参失败
+
 setTimeout(function(parm){alert(parm)},500);//undefined，传参失败
+
 document.getElementById("hello").onclick=f1;//正确
+
 document.getElementById("hello").attachEvent("onclick",f1);//正确
+```
+
+setTimeout在非低版本ie下支持第3个以后的参数，可以作参数传入。
+
+```js
 //正确做法，使用闭包
 function f3(obj){return function(){alert(obj)}}
 var test2=f3(parm);//返回f3的内部函数的引用
+
 setTimeout(test2,500);//正确,222
+
+setTimeout(function(parm){alert(parm)},500,parm);//正确,222
+
+
 document.getElementById("hello").onclick=test2;//正确,222
+
 document.getElementById("hello").attachEvent("onclick",test2);//正确,222
+
 //节点循环绑定事件
 var lis = document.querySelectorAll('li');
 for(var i = 0;i < lis.length;i++)
@@ -78,6 +103,7 @@ for(var i = 0;i < lis.length;i++)
                 console.log(this.innerText);
         }
     })(i))
+}
 ```
 
 ## 参考文章
