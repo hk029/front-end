@@ -379,3 +379,37 @@ function makeIterator(array) {
   };
 ```
 
+## promise 串行
+在 .then() 里面返回一个 promise 对象就是一种串行。我们需要构造一个类似下面这样的 promise 对象：
+```js
+promise1
+  .then(function() { return promise2; })
+  .then(function() { return promise3; })
+  .then(...);
+```
+将一个数组转换为一个值，使用 reduce 可以实现：
+```js
+[1000, 2000, 3000]
+  .reduce(function(promise, timeout) {
+    return promise.then(function() {
+      return later(timeout);
+    });
+  }, Promise.resolve())  //这里第2个参数是传入初始值
+  .then(function(data) {
+    // data = later_3000
+  })
+  .catch(function(err) {
+  });
+```
+上面代码将以下面的方式来执行：
+```js
+Promise.resolve()
+  .then(function() { return later(1000); })
+  .then(function() { return later(2000); })
+  .then(function() { return later(3000) })
+  .then(function(data) {
+    // data = later_3000
+  })
+  .catch(function(err) {
+  });
+```
