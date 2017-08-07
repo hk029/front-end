@@ -101,6 +101,7 @@ var tmp = 123;
 if (true) {
   tmp = 'abc'; // ReferenceError
   let tmp;
+}
 if (true) {
   // TDZ开始
   tmp = 'abc'; // ReferenceError
@@ -109,6 +110,7 @@ if (true) {
   console.log(tmp); // undefined
   tmp = 123;
   console.log(tmp); // 123
+}
 ```
 
 ### typeof不再绝对安全
