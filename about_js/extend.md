@@ -1,27 +1,62 @@
 ## 目录
 ---
+- [目录](#目录)
 - [对象的构造](#对象的构造)
 - [继承](#继承)
-- [es6的class](#es6的class)
 - [create实现方法](#create实现方法)
+- [es6的class](#es6的class)
 - [参考文章](#参考文章)
 ---
 
+## 目录
+
+---
+
+- [对象的构造](#对象的构造)
+
+- [继承](#继承)
+
+- [es6的class](#es6的class)
+
+- [create实现方法](#create实现方法)
+
+- [参考文章](#参考文章)
+
+---
+
+
+
 ## 对象的构造
+
+
 
 根据红宝书上的介绍，一共有7种方法
 
+
+
 - 工厂模式
+
+
 
 - 构造函数模式
 
+
+
 - 组合模式
+
+
 
 - 动态原型模式
 
+
+
 - 寄生构造函数模式
 
+
+
 - 稳妥构造函数模式
+
+
 
 ```js
          构造对象的方法
@@ -72,23 +107,43 @@ function SpecialArray(){
 }
 ```
 
+
+
 ## 继承
+
+
 
 红宝书提到的继承方式有以下几种
 
+
+
 - 原型链
+
+
 
 - 借用构造函数
 
+
+
 - 组合继承
+
+
 
 - 原型式继承
 
+
+
 - 寄生式继承
+
+
 
 - 寄生组合式继承
 
+
+
 es6之后可以用class继承
+
+
 
 ```js
          继承的方法
@@ -124,7 +179,11 @@ function inherit(subType,superType){
 }
 ```
 
+
+
 ## create实现方法
+
+
 
 ```js
 // create实现方法
@@ -137,11 +196,19 @@ var a = new A('a');
 var b = new B('b');
 ```
 
+
+
 ## es6的class
+
+
 
 利用class实现继承
 
+
+
 下面利用ES6引入的新语法糖，class、extends关键字对上述实现继承的代码进行改写：
+
+
 
 ```js
 class Person {
@@ -164,19 +231,37 @@ class Student extends Person {
  }
 ```
 
+
+
 class里的constructor 对应原来的构造函数
+
+
 
 class里面的其他方法都是写在原来构造函数的prototype中的
 
+
+
 子类直接通过extends 关键字进行继承
+
+
 
 子类中可以通过super来调用父类中的方法
 
+
+
 ## 参考文章
+
+
 
 《javascript高级程序设计》
 
+
+
 [彻底理解Javascript中的原型链与继承](https://segmentfault.com/a/1190000007906832)
 
+
+
 [白话解释 Javascript 原型继承(prototype inheritance)](https://segmentfault.com/a/1190000008226777)
+
+
 

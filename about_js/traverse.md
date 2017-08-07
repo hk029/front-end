@@ -1,5 +1,6 @@
 ## 目录
 ---
+- [遍历DOM节点](#遍历DOM节点)
 ---
 
 ## 遍历DOM节点
@@ -17,7 +18,6 @@ var getNode = function (node) {
     tmp.children = [];
     return tmp;
 }
-
 var traverse = function (node) {
   var newNode = getNode(node); 
   var children = node.children;
@@ -27,7 +27,9 @@ var traverse = function (node) {
   return newNode;
 }
 ```
+
 用原生自带的遍历器
+
 ```js
 //原生自带的遍历器，只有nextNode和previousNode两个方法
 var it = document.createNodeIterator(document,NodeFilter.SHOW_ELEMENT,null,false);
@@ -36,7 +38,6 @@ while(node !== null){
   console.log(node.tagName);
   node = it.nextNode();
 }
-
 //升级版遍历器，有parentNode，firstChild，lastChild，nextSibing，previousSibing等方法
 //参数和这个类似
 var walker = document.createTreeWalker(document,NodeFilter.SHOW_ELEMENT,null,false);
@@ -45,5 +46,5 @@ while(node !== null){
   console.log(node.tagName);
   node = walker.nextNode();
 }
-
 ```
+
