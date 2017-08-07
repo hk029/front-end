@@ -36,19 +36,25 @@ const表示常量必须在**定义的时候赋值**，且**不能修改**，否�
 function () {
   let a = 10;
   var a = 1;
+}
+// 不报错
 function () {
   var a = 10;
   let a = 1;
+ }
 // 报错
 function () {
   let a = 10;
-  let a = 1;
+  let a = 1;
+}
 function func(arg) {
-  let arg; // 报错
+  let arg; // 报错
+}
 function func(arg) {
   {
     let arg; // 不报错
   }
+}
 ```
 
 ### for的特殊性
@@ -56,10 +62,12 @@ function func(arg) {
 ```javascript
 for (var i = 0; i < 3; i++) {
   setTimeout(function(){console.log(i)},0)
+}
 //3 3 3 
 for (let i = 0; i < 3; i++) {
   setTimeout(function(){console.log(i)},0)
 //0 1 2 
+}
 ```
 
 `for`循环还有一个特别之处，**就是循环语句部分是一个父作用域**，而循环体内部是一个单独的子作用域。
@@ -68,6 +76,7 @@ for (let i = 0; i < 3; i++) {
 for (let i = 0; i < 3; i++) {
   let i = 'abc';
   console.log(i);
+}
 ```
 
 ### 无变量提升
@@ -92,6 +101,7 @@ var tmp = 123;
 if (true) {
   tmp = 'abc'; // ReferenceError
   let tmp;
+}
 if (true) {
   // TDZ开始
   tmp = 'abc'; // ReferenceError
@@ -100,6 +110,7 @@ if (true) {
   console.log(tmp); // undefined
   tmp = 123;
   console.log(tmp); // 123
+}
 ```
 
 ### typeof不再绝对安全

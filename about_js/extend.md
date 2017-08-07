@@ -33,6 +33,7 @@ function createA(name){
         console.log(this.name);
     }
     return a;
+ }
 //////////////// 一般是组合使用构造函数和原型模式
 //构造函数式 
 // -没有显式构造
@@ -42,6 +43,7 @@ function createA(name){
 function A(name) {
     this.name = name;
     this.haha = 'haha';
+ }
 //原型模式（用于构造函数，防止多次实例化函数）
 // 原型对象属性都是共享的，所以用来定义属性不合适（特别是引用类型）
 A.prototype.say = function(){
@@ -67,6 +69,7 @@ function SpecialArray(){
     value.push.apply(value,arguments);
     value.newMethod = function(){};
     return value;
+}
 ```
 
 ## 继承
@@ -94,6 +97,7 @@ es6之后可以用class继承
 function B(name,age){
     A.call(this,name);
     this.age = age;
+}
 //修改B的原型，指向A,继承A的方法
 B.prototype = new A();
 //修改B原型的constructor   
@@ -111,10 +115,26 @@ inherit(B,A);
 //定义B自己的方法
 B.prototype.sayhi = function(){
     console.log('hi');
+ }
+ 
 function inherit(subType,superType){
     var prototype = Object.create(superType.prototype);  //专门有个中间函数来传递原型链（不损坏super原型，又能添加方法）
     prototype.constructor = subType;
     subType.prototype = prototype;
+}
+```
+
+## create实现方法
+
+```js
+// create实现方法
+function create(A){
+    function F(){};
+    F.prototype = A;
+    return new F();
+ }
+var a = new A('a');
+var b = new B('b');
 ```
 
 ## es6的class
@@ -132,6 +152,7 @@ class Person {
     sayName () {
         console.log('my name is ' + this.name);
     }
+ }
 class Student extends Person {
     constructor (name, age, school) {
         super(name, age);
@@ -140,6 +161,7 @@ class Student extends Person {
     saySchool () {
         console.log('my school is ' + this.school);
     }
+ }
 ```
 
 class里的constructor 对应原来的构造函数
@@ -149,18 +171,6 @@ class里面的其他方法都是写在原来构造函数的prototype中的
 子类直接通过extends 关键字进行继承
 
 子类中可以通过super来调用父类中的方法
-
-## create实现方法
-
-```js
-// create实现方法
-function create(A){
-    function F(){};
-    F.prototype = A;
-    return new F();
-var a = new A('a');
-var b = new B('b');
-```
 
 ## 参考文章
 
