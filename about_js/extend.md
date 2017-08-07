@@ -115,10 +115,26 @@ inherit(B,A);
 //定义B自己的方法
 B.prototype.sayhi = function(){
     console.log('hi');
+ }
+ 
 function inherit(subType,superType){
     var prototype = Object.create(superType.prototype);  //专门有个中间函数来传递原型链（不损坏super原型，又能添加方法）
     prototype.constructor = subType;
     subType.prototype = prototype;
+}
+```
+
+## create实现方法
+
+```js
+// create实现方法
+function create(A){
+    function F(){};
+    F.prototype = A;
+    return new F();
+ }
+var a = new A('a');
+var b = new B('b');
 ```
 
 ## es6的class
@@ -155,19 +171,6 @@ class里面的其他方法都是写在原来构造函数的prototype中的
 子类直接通过extends 关键字进行继承
 
 子类中可以通过super来调用父类中的方法
-
-## create实现方法
-
-```js
-// create实现方法
-function create(A){
-    function F(){};
-    F.prototype = A;
-    return new F();
- }
-var a = new A('a');
-var b = new B('b');
-```
 
 ## 参考文章
 
