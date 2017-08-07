@@ -33,11 +33,9 @@ function swap(arr,i,j){
 
 
 function quickSort(arr) {
-
     if(arr.length<=1) {
         return arr;
     }
-
     let leftArr = [];
     let rightArr = [];
     let q = arr[0];
@@ -48,7 +46,6 @@ function quickSort(arr) {
             leftArr.push(arr[i]);
         }
     }
-
     return [].concat(quickSort(leftArr),[q],quickSort(rightArr));
 }
 
