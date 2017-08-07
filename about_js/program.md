@@ -221,3 +221,10 @@ function isPalindrome(str){
 }
 ```
 
+## 如何实现任意进制转换
+parseInt(x,N)可以把N进制的数转换成10进制。
+toString(N)可以把任意10进制的数转换成对应进制字符串
+```js
+//2进制转16进制
+parseInt('10110110',2).toString(16);
+```
