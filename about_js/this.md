@@ -204,7 +204,7 @@ user.clickHandler2(); // What is "this" referring to? [object user]
 
 ```javascript
 var arr = Array.prototype.slice.call(arguments,0)  //之后就可以使用数组方法了
-[].forEach(arguments, function (element) {
+[].forEach.call(arguments, function (element) {
   console.log(element)
 }
 ```
