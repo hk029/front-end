@@ -116,6 +116,7 @@ var reg = eval('/[test]/ig');
 ### replace 
 
 替换与正则表达式匹配的子串。
+replace可以替换分组，如果直接接字符串可以用$1...$99代替，如果function，那么第一个参数是匹配字符串，从arguments[1]开始是分组值
 
 ### search 
 
