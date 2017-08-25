@@ -122,7 +122,111 @@
 
 
 
+# 坑
 
+## es6
+
+### let
+
+- let和const注意：只有在`{}`中才有作用域（**if单语句不加{} 不能用let**）
+
+- let定义后，不能再用let,var,const重复定义（先var再let可以），传的**参数名默认也是let**定义的
+
+- `for`循环还有一个特别之处，**就是循环语句部分是一个父作用域**，而循环体内部是一个单独的子作用域。
+
+- 无变量提升
+
+- 暂时性死区TDZ（在{}内部定义之后，在这个块里let定义之前访问这个变量会报`ReferenceError`的错）
+
+  ```js
+  var tmp = 123;
+  if (true) {
+    tmp = 'abc'; // ReferenceError
+    let tmp;
+  }
+  ```
+
+- typeof不再绝对安全（因为TDZ）
+
+- 不属于顶层对象
+
+- **const只保护地址**（对象内部属性不保证）
+
+
+
+### 箭头
+
+- 没有this，this会一直查找（对箭头函数用bind,apply,call改变this无效）
+
+
+
+## 类型转换
+
+
+
+```
+parseInt("")  //NaN    注意和Number不同，Number("")  -> 0 
+```
+
+- 几乎任何值都有的`toString()`（**除了null和undefined**），但是！String()，**可以将所有的类型转换成字符串**，它会先调用toString()，不能转换（null,undefined）的再特殊处理，不能更改进制。(**字符串的+操作就是利用这个**)
+
+```
+String(10) // "10"
+String(null) //"null"
+String(undefined)  //"undefined"
+null.toString   //报错
+```
+
+- Object默认转换成"[object Object]"，**除非手动实现了toString函数**
+
+### == 和 ===
+
+- == 如果是同一类型，直接比较（**对象比较指针，永远不相等**）
+
+- null和undefined和非这两者的值，都为false
+
+- Number和String, String=>Number
+
+- Boolean和其他类型，Boolean=>Number（0，1）
+
+- Number，String和Object, Ojbect调用valueOf或toString
+
+  > Object默认转换成"[object Object]"，除非手动实现了toString函数
+  >
+  > **数组会扁平化！！**
+  >
+  > []转换成""
+  >
+  > [1]转换成"1"
+  >
+  > [1,2,[3,4],5]转换成"1,2,3,4,5"
+
+
+
+`margin-top`和`margin-bottom`对**非替换行内元素无效**
+
+padding的百分比计算和margin一样，都**只与父亲的width有关**
+
+★border设置的时候，**最少需要设置一个样式**
+
+边框宽度**默认medium**
+
+边框**颜色默认值**为`color`值
+
+
+
+注意：对于那些包**含块基于一个块级元素的绝对定位的元素**，百分比根据**这个元素的padding box的高度来计算**。这与CSS1不同，（CSS1中）百分比总是根据父级元素的*content box*来计算.
+
+
+
+宽度**初始值为auto**
+
+
+
+margin塌陷
+
+1. 都属于**流内**（in-flow）[**块级盒**](https://github.com/hk029/front-end/blob/master/about_css/fc.md#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0Block-level-elements%E4%B8%8E%E5%9D%97%E7%BA%A7%E7%9B%92Block-level-boxes) ，处于**同一个**[块格式化上下文**BFC**](https://github.com/hk029/front-end/blob/master/about_css/fc.md)
+2. **没有行盒** （line box），**没有空隙（clearance）**，**没有padding**并且**没有border把它们隔开**（注意，因此某些0高度行盒会被忽略）
 
 
 
