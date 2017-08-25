@@ -273,3 +273,7 @@
 
 - [你常关注的网站](/interview/p3.md)
 
+- [forEach，map，$.each区别](/interview/p4.md)
+
+- [用setTimeout()方法来模拟setInterval()与setInterval()之间的什么区别？](/interview/p5.md)
+

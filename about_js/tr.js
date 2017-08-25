@@ -49,10 +49,20 @@ var traverse = function (node) {
   return newNode;
 }
 
-
+//原生自带的遍历器，只有nextNode和previousNode两个方法
 var it = document.createNodeIterator(document,NodeFilter.SHOW_ELEMENT,null,false);
 var node = it.nextNode();
 while(node !== null){
   console.log(node.tagName);
   node = it.nextNode();
 }
+
+//升级版遍历器，有parentNode，firstChild，lastChild，nextSibing，previousSibing等方法
+//参数和这个类似
+var walker = document.createTreeWalker(document,NodeFilter.SHOW_ELEMENT,null,false);
+var node = walker.nextNode();
+while(node !== null){
+  console.log(node.tagName);
+  node = walker.nextNode();
+}
+
