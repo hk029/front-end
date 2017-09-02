@@ -277,3 +277,4 @@
 
 - [用setTimeout()方法来模拟setInterval()与setInterval()之间的什么区别？](/interview/p5.md)
 
+- [new Date的兼容性问题](/interview/p6.md)
